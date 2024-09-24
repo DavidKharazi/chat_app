@@ -1,6 +1,7 @@
 import { Button, TextInput, Box, Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
+import { login } from "../Services/authService";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -17,10 +18,14 @@ export function LoginPage() {
     },
   });
 
-  const handleSubmit = (values: typeof form.values) => {
-    // Заменить на отправку запроса на авторизацию
-    console.log("Авторизация:", values);
-    navigate("/chat");
+  const handleSubmit = async (values: typeof form.values) => {
+    try {
+      const data = await login(values);
+      console.log("Авторизация успешна:", data);
+      navigate("/chat");
+    } catch (error: any) {
+      console.error("Ошибка авторизации:", error.message);
+    }
   };
 
   return (

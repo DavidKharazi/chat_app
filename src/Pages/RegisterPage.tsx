@@ -1,6 +1,7 @@
 import { Button, TextInput, Box, Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
+import { register } from "../Services/authService";
 
 export function RegisterPage() {
   const navigate = useNavigate();
@@ -20,10 +21,19 @@ export function RegisterPage() {
     },
   });
 
-  const handleSubmit = (values: typeof form.values) => {
-    // Заменить на отправку запроса на регистрацию
-    console.log("Регистрация:", values);
-    navigate("/chat");
+  const handleSubmit = async (values: typeof form.values) => {
+    try {
+      const data = await register({
+        email: values.email,
+        password: values.password,
+      });
+      console.log("Регистрация успешна:", data);
+      navigate("/chat");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Ошибка регистрации:", error.message);
+      }
+    }
   };
 
   return (
