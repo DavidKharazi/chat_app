@@ -2,10 +2,12 @@ import { Button, TextInput, Box, Text } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import { register } from "../Services/authService";
+import { useHover } from "@mantine/hooks";
 
 export function RegisterPage() {
   const navigate = useNavigate();
-
+  const { hovered, ref } = useHover<HTMLButtonElement>();
+  const { hovered: spanHovered, ref: spanRef } = useHover<HTMLSpanElement>();
   const form = useForm({
     initialValues: {
       email: "",
@@ -37,9 +39,37 @@ export function RegisterPage() {
   };
 
   return (
-    <Box style={{ minWidth: 350, maxWidth: 650, margin: "auto" }}>
-      <h3>Регистрация</h3>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+    <Box
+      style={{
+        minWidth: 350,
+        maxWidth: 650,
+        margin: "auto",
+        border: "1px solid grey",
+        borderRadius: "7px",
+        padding: "15px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+      }}
+    >
+      <Box style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+        <div
+          style={{ fontFamily: "GeistSans", fontSize: "24px", margin: "0px" }}
+        >
+          Регистрация
+        </div>
+        <p style={{ fontFamily: "GeistSans", color: "grey", margin: "0px" }}>
+          Введите данные для регистрации
+        </p>
+      </Box>
+      <form
+        onSubmit={form.onSubmit(handleSubmit)}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
+      >
         <TextInput
           label="Email"
           placeholder="your.email@example.com"
@@ -60,7 +90,13 @@ export function RegisterPage() {
           type="password"
           {...form.getInputProps("confirmPassword")}
         />
-        <Button type="submit" fullWidth mt="md">
+        <Button
+          type="submit"
+          fullWidth
+          mt="md"
+          color={hovered ? "#869bb1" : "#18181a"}
+          ref={ref}
+        >
           Зарегистрироваться
         </Button>
       </form>
@@ -68,7 +104,11 @@ export function RegisterPage() {
         Уже зарегистрированы?{" "}
         <Text
           component="span"
-          style={{ color: "blue", cursor: "pointer" }}
+          ref={spanRef}
+          style={{
+            cursor: "pointer",
+            textDecoration: spanHovered ? "underline" : "none",
+          }}
           onClick={() => navigate("/login")}
         >
           Войти
