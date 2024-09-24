@@ -11,8 +11,8 @@ interface RegisterCredentials {
 export const login = async (credentials: LoginCredentials) => {
   try {
     const formData = new FormData();
-    formData.append("username", credentials.email);
-    formData.append("password", credentials.password);
+    formData.append("username", credentials.password);
+    formData.append("password", credentials.email);
     const response = await fetch("https://chatnsv.up.railway.app/login", {
       method: "POST",
       body: formData,
@@ -37,8 +37,8 @@ export const login = async (credentials: LoginCredentials) => {
 export const register = async (credentials: RegisterCredentials) => {
   try {
     const formData = new FormData();
-    formData.append("username", credentials.email);
-    formData.append("password", credentials.password);
+    formData.append("username", credentials.password);
+    formData.append("password", credentials.email);
     const response = await fetch("https://chatnsv.up.railway.app/register/", {
       method: "POST",
       body: formData,
