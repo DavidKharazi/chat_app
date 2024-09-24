@@ -33,7 +33,7 @@ export function ResetPasswordPage() {
         minWidth: 350,
         maxWidth: 650,
         margin: "auto",
-        border: "1px solid grey",
+        border: "1px solid #b1bfcc",
         borderRadius: "7px",
         padding: "15px",
         display: "flex",
@@ -46,6 +46,16 @@ export function ResetPasswordPage() {
           style={{ fontFamily: "GeistSans", fontSize: "24px", margin: "0px" }}
         >
           Введите электронный адрес
+          <p
+            style={{
+              fontFamily: "GeistSans",
+              fontSize: "14px",
+              color: "grey",
+              margin: "0px",
+            }}
+          >
+            Укажите email для восстановления пароля
+          </p>
         </div>
       </Box>
       <form
@@ -69,7 +79,7 @@ export function ResetPasswordPage() {
           color={buttonHovered ? "#869bb1" : "#18181a"}
           ref={buttonRef}
         >
-          Сбросить пароль
+          Отправить инструкции
         </Button>
       </form>
       <Text style={{ textAlign: "center", marginTop: "1rem" }}>
@@ -82,7 +92,7 @@ export function ResetPasswordPage() {
           }}
           onClick={() => navigate("/login")}
         >
-          Назад к авторизации
+          Вернуться на страницу входа
         </Text>
       </Text>
     </Box>

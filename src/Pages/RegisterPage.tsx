@@ -44,7 +44,7 @@ export function RegisterPage() {
         minWidth: 350,
         maxWidth: 650,
         margin: "auto",
-        border: "1px solid grey",
+        border: "1px solid #b1bfcc",
         borderRadius: "7px",
         padding: "15px",
         display: "flex",

@@ -38,7 +38,7 @@ export function LoginPage() {
         minWidth: 350,
         maxWidth: 650,
         margin: "auto",
-        border: "1px solid grey",
+        border: "1px solid #b1bfcc",
         borderRadius: "7px",
         padding: "15px",
         display: "flex",
@@ -88,7 +88,7 @@ export function LoginPage() {
         </Button>
       </form>
       <Text style={{ textAlign: "center" }} mt="md">
-        Впервые здесь?{" "}
+        Нет аккаунта?{" "}
         <Text
           component="span"
           ref={spanRef}
@@ -98,7 +98,7 @@ export function LoginPage() {
           }}
           onClick={() => navigate("/register")}
         >
-          Зарегистрироваться
+          Зарегистрируйтесь
         </Text>
       </Text>
       <Text style={{ textAlign: "center" }}>
