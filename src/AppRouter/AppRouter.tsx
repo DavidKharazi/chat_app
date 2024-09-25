@@ -8,13 +8,13 @@ import { ForgotPasswordPage } from "../Pages/ForgotPasswordPage";
 
 const AppRouter: React.FC = () => {
   return (
-    <Box p="md">
+    <Box>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/chat' element={<ChatPage />} />
+        <Route path='/forgot-password' element={<ForgotPasswordPage />} />
       </Routes>
     </Box>
   );

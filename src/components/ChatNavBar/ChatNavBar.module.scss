@@ -1,0 +1,24 @@
+.navBar {
+  padding: 12px;
+  background-color: var(--background-color-secondary);
+  justify-content: space-between;
+  transform: translate(0%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.navBarHidden {
+  transform: translate(-100%);
+}
+
+.navLink {
+  padding: 12px 8px;
+  border-radius: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--navLink-hover-color);
+  }
+}
