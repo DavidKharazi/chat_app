@@ -10,18 +10,29 @@ export function LoginPage() {
   const { hovered: spanHovered, ref: spanRef } = useHover<HTMLSpanElement>();
   const { hovered: spanTextHovered, ref: spanTextRef } =
     useHover<HTMLSpanElement>();
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+
   const form = useForm({
     initialValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
+    validateInputOnChange: true,
     validate: {
-      email: (value) => (/\S+@\S+/.test(value) ? null : "Некорректный email"),
+      email: (value) =>
+        emailRegex.test(value) && !/\s/.test(value)
+          ? null
+          : "Некорректный email (должен содержать @, точку, латинские буквы, пробелы запрещены)",
+
       password: (value) =>
-        value.length > 5 ? null : "Пароль должен содержать не менее 6 символов",
+        passwordRegex.test(value) && !/\s/.test(value)
+          ? null
+          : 'Пароль должен содержать не менее 8 символов, минимум 1 заглавную букву, 1 цифру, 1 спец. символ из [!@#$%^&*(),.?":{}|<>], пробелы запрещены',
     },
   });
-
   const handleSubmit = async (values: typeof form.values) => {
     try {
       const data = await login(values);
@@ -35,7 +46,7 @@ export function LoginPage() {
   return (
     <Box
       style={{
-        minWidth: 350,
+        minWidth: 380,
         maxWidth: 650,
         margin: "auto",
         border: "1px solid #b1bfcc",
@@ -61,25 +72,65 @@ export function LoginPage() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
         }}
       >
         <TextInput
           label="Email"
+          size="md"
           placeholder="your.email@example.com"
           required
           {...form.getInputProps("email")}
+          error={
+            <div
+              style={{
+                maxWidth: "350px",
+                wordWrap: "break-word",
+                minHeight: "30px",
+                margin: 0,
+              }}
+            >
+              {form.errors.email}
+            </div>
+          }
+          styles={{
+            input: {
+              color: form.errors.email ? "red" : "black",
+              borderColor: form.errors.email ? "red" : "black",
+              transition: "border-color 0.2s ease",
+            },
+          }}
         />
         <TextInput
           label="Пароль"
+          size="md"
           placeholder="Введите пароль"
           required
           type="password"
           {...form.getInputProps("password")}
+          error={
+            <div
+              style={{
+                maxWidth: "350px",
+                wordWrap: "break-word",
+                minHeight: "45px",
+              }}
+            >
+              {form.errors.password}
+            </div>
+          }
+          styles={{
+            input: {
+              color: form.errors.email ? "red" : "black",
+              borderColor: form.errors.email ? "red" : "black",
+              transition: "border-color 0.2s ease",
+            },
+          }}
         />
         <Button
           type="submit"
           fullWidth
+          variant="filled"
+          disabled={!form.isValid()}
           mt="md"
           color={hovered ? "#869bb1" : "#18181a"}
           ref={ref}

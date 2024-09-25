@@ -1,23 +1,38 @@
 import { Button, TextInput, Box, Text } from "@mantine/core";
+import { useState } from "react";
 import { useForm } from "@mantine/form";
 import { useNavigate } from "react-router-dom";
 import { register } from "../Services/authService";
 import { useHover } from "@mantine/hooks";
 
 export function RegisterPage() {
+  const [isRegistered, setIsRegistered] = useState(false);
   const navigate = useNavigate();
   const { hovered, ref } = useHover<HTMLButtonElement>();
   const { hovered: spanHovered, ref: spanRef } = useHover<HTMLSpanElement>();
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordRegex =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,}$/;
+
   const form = useForm({
     initialValues: {
       email: "",
       password: "",
       confirmPassword: "",
     },
+    validateInputOnChange: true,
     validate: {
-      email: (value) => (/\S+@\S+/.test(value) ? null : "Некорректный email"),
+      email: (value) =>
+        emailRegex.test(value) && !/\s/.test(value)
+          ? null
+          : "Некорректный email",
+
       password: (value) =>
-        value.length > 5 ? null : "Пароль должен содержать не менее 6 символов",
+        passwordRegex.test(value) && !/\s/.test(value)
+          ? null
+          : `Не менее 8 символов, минимум 1 заглавная буква, 1 цифра, 1 спец. символ [)!@#$%^&*(),.?":{}|<>], пробелы запрещены`,
+
       confirmPassword: (value, values) =>
         value === values.password ? null : "Пароли не совпадают",
     },
@@ -30,7 +45,7 @@ export function RegisterPage() {
         password: values.password,
       });
       console.log("Регистрация успешна:", data);
-      navigate("/chat");
+      setIsRegistered(true);
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error("Ошибка регистрации:", error.message);
@@ -41,7 +56,7 @@ export function RegisterPage() {
   return (
     <Box
       style={{
-        minWidth: 350,
+        minWidth: 380,
         maxWidth: 650,
         margin: "auto",
         border: "1px solid #b1bfcc",
@@ -54,44 +69,113 @@ export function RegisterPage() {
     >
       <Box style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
         <div
-          style={{ fontFamily: "GeistSans", fontSize: "24px", margin: "0px" }}
+          style={{
+            fontFamily: "GeistSans",
+            fontSize: "24px",
+            margin: "0px",
+            maxWidth: "380px",
+            wordWrap: "break-word",
+          }}
         >
-          Регистрация
+          {isRegistered
+            ? "Заявка отправлена на модерацию. Ожидайте ответа на ваш e-mail!"
+            : "Регистрация"}
         </div>
-        <p style={{ fontFamily: "GeistSans", color: "grey", margin: "0px" }}>
-          Введите данные для регистрации
-        </p>
+        {!isRegistered && (
+          <p style={{ fontFamily: "GeistSans", color: "grey", margin: "0px" }}>
+            Введите данные для регистрации
+          </p>
+        )}
       </Box>
       <form
         onSubmit={form.onSubmit(handleSubmit)}
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
         }}
       >
         <TextInput
           label="Email"
+          size="md"
           placeholder="your.email@example.com"
           required
           {...form.getInputProps("email")}
+          error={
+            <div
+              style={{
+                maxWidth: "350px",
+                wordWrap: "break-word",
+                minHeight: "30px",
+                margin: 0,
+              }}
+            >
+              {form.errors.email}
+            </div>
+          }
+          styles={{
+            input: {
+              color: form.errors.email ? "red" : "black",
+              borderColor: form.errors.email ? "red" : "black",
+              transition: "border-color 0.2s ease",
+            },
+          }}
         />
         <TextInput
           label="Пароль"
+          size="md"
           placeholder="Введите пароль"
           required
           type="password"
           {...form.getInputProps("password")}
+          error={
+            <div
+              style={{
+                maxWidth: "350px",
+                wordWrap: "break-word",
+                minHeight: "45px",
+              }}
+            >
+              {form.errors.password}
+            </div>
+          }
+          styles={{
+            input: {
+              color: form.errors.email ? "red" : "black",
+              borderColor: form.errors.email ? "red" : "black",
+              transition: "border-color 0.2s ease",
+            },
+          }}
         />
         <TextInput
           label="Подтверждение пароля"
+          size="md"
           placeholder="Повторите пароль"
           required
           type="password"
           {...form.getInputProps("confirmPassword")}
+          error={
+            <div
+              style={{
+                maxWidth: "350px",
+                wordWrap: "break-word",
+                minHeight: "30px",
+              }}
+            >
+              {form.errors.confirmPassword}
+            </div>
+          }
+          styles={{
+            input: {
+              color: form.errors.email ? "red" : "black",
+              borderColor: form.errors.email ? "red" : "black",
+              transition: "border-color 0.2s ease",
+            },
+          }}
         />
         <Button
           type="submit"
+          variant="filled"
+          disabled={!form.isValid()}
           fullWidth
           mt="md"
           color={hovered ? "#869bb1" : "#18181a"}
@@ -117,3 +201,4 @@ export function RegisterPage() {
     </Box>
   );
 }
+``;

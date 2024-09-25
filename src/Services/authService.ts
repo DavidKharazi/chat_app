@@ -11,7 +11,7 @@ interface RegisterCredentials {
 export const login = async (credentials: LoginCredentials) => {
   try {
     const formData = new FormData();
-    //  formData.append("username", credentials.password);
+    //  formData.append("username", credentials.password); // костыль для  https://nsvcyberman.up.railway.app/
     //  formData.append("password", credentials.email);
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
@@ -40,7 +40,7 @@ export const login = async (credentials: LoginCredentials) => {
 export const register = async (credentials: RegisterCredentials) => {
   try {
     const formData = new FormData();
-    //  formData.append("username", credentials.password);
+    //  formData.append("username", credentials.password); // костыль для  https://nsvcyberman.up.railway.app/
     //  formData.append("password", credentials.email);
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
