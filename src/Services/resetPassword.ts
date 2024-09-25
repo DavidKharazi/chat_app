@@ -2,8 +2,10 @@ export const resetPassword = async (email: string) => {
   try {
     const formData = new FormData();
     formData.append("email", email);
+    //  const response = await fetch(
+    //   "https://chatnsv.up.railway.app/reset-password-request",
     const response = await fetch(
-      "https://chatnsv.up.railway.app/reset-password-request",
+      "  https://chata100.up.railway.app/reset-password-request",
       {
         method: "POST",
         body: formData,
