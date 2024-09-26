@@ -20,18 +20,19 @@
   gap: 5px;
 }
 
-.title {
+.form-title {
   font-family: "GeistSans";
-  font-size: 24px;
+  font-size: 24px !important;
+  font-weight: 600;
   margin: 0px;
-  max-width: "380px";
-  word-wrap: "break-word";
+  max-width: 380px;
+  word-wrap: break-word;
 }
 
 .subtitle {
   font-family: "GeistSans";
-  font-size: 14px;
-  color: grey;
+  font-size: 14px !important;
+  color: grey !important;
   margin: 0px;
 }
 

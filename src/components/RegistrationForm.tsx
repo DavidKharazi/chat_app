@@ -7,10 +7,12 @@ import CustomFormButton from "./CustomFormButton";
 
 interface RegistrationFormProps {
   onSuccess: () => void;
+  setErrorMessage: (message: string | null) => void; // Add this prop
 }
 
 export const RegistrationForm: React.FC<RegistrationFormProps> = ({
   onSuccess,
+  setErrorMessage,
 }) => {
   const form = useForm<RegisterFormValues>({
     initialValues: {
@@ -30,9 +32,12 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
       });
 
       onSuccess();
+      setErrorMessage(null);
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error("Ошибка регистрации:", error.message);
+
+        setErrorMessage(error.message);
       }
     }
   };

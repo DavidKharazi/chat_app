@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 interface RegisterPageLinksProps {
   loginText?: string;
-  resetText?: string;
+  resetText?: string | null;
 }
 
 export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = ({
@@ -32,9 +32,9 @@ export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = ({
           <Text
             component="span"
             className="text-link"
-            onClick={() => navigate("/reset-password")}
+            onClick={() => navigate("/login")}
           >
-            Сбросить пароль
+            Вернуться на страницу входа
           </Text>
         </>
       )}

@@ -18,13 +18,13 @@ export function ResetPasswordPage() {
       ) : (
         <>
           <FormHeader
-            title="Войдите в свой аккаунт"
-            subtitle="Введите электронный адрес"
+            title="Восстановление пароля"
+            subtitle="Укажите email для восстановления пароля"
           />
           <ResetPasswordForm onSuccess={setConfirmationMessage} />
         </>
       )}
-      <RegisterPageLinks resetText="Вернуться на страницу" />
+      <RegisterPageLinks resetText=" " />
     </Box>
   );
 }
