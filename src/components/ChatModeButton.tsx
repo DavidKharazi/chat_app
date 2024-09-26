@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Menu } from "@mantine/core";
+import { Button, Image, Menu } from "@mantine/core";
 import buttonArrow from "../assets/buttonArrow.svg";
 
 const ChatModeButton = () => {
@@ -9,9 +9,9 @@ const ChatModeButton = () => {
     <Menu opened={opened} onChange={setOpened}>
       <Menu.Target>
         <Button
-          color='#7D7D7D'
+          color='var(--font-color-secondary)'
           variant='transparent'
-          rightSection={<img src={buttonArrow} />}
+          rightSection={<Image src={buttonArrow} />}
         >
           CyberMan A100
         </Button>

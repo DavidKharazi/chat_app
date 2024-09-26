@@ -6,19 +6,21 @@ import {
   Burger,
   Flex,
   Group,
+  Image,
 } from "@mantine/core";
-import React from "react";
+import { FC } from "react";
 import ChatModeButton from "../ChatModeButton";
 import menuButtonIcon from "../../assets/menuButton.svg";
 import newChatButtonIcon from "../../assets/newChatButton.svg";
 import styles from "./ChatHeader.module.scss";
+import clsx from "clsx";
 
 type ChatHeaderProps = {
   isNavClosed: boolean;
   toggleNav: () => void;
 };
 
-const ChatHeader: React.FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
+const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
   return (
     <AppShell.Header>
       <Burger
@@ -29,13 +31,16 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
       />
       <Flex h='100%' visibleFrom='sm'>
         <Box
-          className={`${styles.headerButtons} ${isNavClosed && styles.compactHeaderButtons}`}
+          className={clsx(
+            styles.headerButtons,
+            isNavClosed && styles.compactHeaderButtons
+          )}
         >
           <ActionIcon size={40} variant='transparent' onClick={toggleNav}>
-            <img src={menuButtonIcon} />
+            <Image src={menuButtonIcon} />
           </ActionIcon>
           <ActionIcon size={40} variant='transparent'>
-            <img src={newChatButtonIcon} />
+            <Image src={newChatButtonIcon} />
           </ActionIcon>
         </Box>
         <Group justify='space-between' flex={1} px={12} py={8}>

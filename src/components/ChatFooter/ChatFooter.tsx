@@ -1,17 +1,18 @@
-import { AppShell, Box, Stack, Textarea } from "@mantine/core";
-import React from "react";
+import { AppShell, Box, Image, Stack, Textarea } from "@mantine/core";
+import { FC } from "react";
 import stapleIcon from "../../assets/staple.svg";
 import filledArrowIcon from "../../assets/buttonFilledArrow.svg";
 import styles from "./ChatFooter.module.scss";
+import { clsx } from "clsx";
 
 type ChatFooterProps = {
   isNavClosed: boolean;
 };
 
-const ChatFooter: React.FC<ChatFooterProps> = ({ isNavClosed }) => {
+const ChatFooter: FC<ChatFooterProps> = ({ isNavClosed }) => {
   return (
     <AppShell.Footer
-      className={`${styles.footer} ${isNavClosed && styles.withoutPadding}`}
+      className={clsx(styles.footer, isNavClosed && styles.withoutPadding)}
     >
       <Stack w='100%' maw={768} px={12}>
         <Textarea
@@ -23,10 +24,10 @@ const ChatFooter: React.FC<ChatFooterProps> = ({ isNavClosed }) => {
           size='lg'
           minRows={1}
           maxRows={8}
-          rightSection={<img src={filledArrowIcon} />}
-          leftSection={<img src={stapleIcon} />}
+          rightSection={<Image src={filledArrowIcon} />}
+          leftSection={<Image src={stapleIcon} />}
         />
-        <Box fz={11} fw={400} c='var(--font-color-secondary)' ta='center'>
+        <Box fz='xs' fw='normal' c='var(--font-color-secondary)' ta='center'>
           CyberMan A100 всегда учится и развивается. Для точных решений
           рекомендуем перепроверять важные данные.
         </Box>

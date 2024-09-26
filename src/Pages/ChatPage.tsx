@@ -1,20 +1,24 @@
 import { AppShell } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-
 import ChatFooter from "../components/ChatFooter/ChatFooter";
 import ChatHeader from "../components/ChatHeader/ChatHeader";
 import ChatNavBar from "../components/ChatNavBar/ChatNavBar";
 import ChatMainBlock from "../components/ChatMainBlock";
+
+const HEADER_CONFIG = { height: 60 };
+const NAVBAR_CONFIG = {
+  width: 260,
+  breakpoint: "sm",
+};
 
 export function ChatPage() {
   const [isNavClosed, { toggle: toggleNav }] = useDisclosure();
 
   return (
     <AppShell
-      header={{ height: 60 }}
+      header={HEADER_CONFIG}
       navbar={{
-        width: 260,
-        breakpoint: "sm",
+        ...NAVBAR_CONFIG,
         collapsed: { mobile: isNavClosed ? !isNavClosed : isNavClosed },
       }}
       withBorder={false}

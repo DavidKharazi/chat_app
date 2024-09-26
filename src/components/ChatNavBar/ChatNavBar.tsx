@@ -2,24 +2,26 @@ import {
   AppShell,
   Box,
   Flex,
+  Image,
   NavLink,
   Stack,
   Text,
   Title,
 } from "@mantine/core";
-import React from "react";
+import { FC } from "react";
 import updatePlanIcon from "../../assets/updatePlan.svg";
 import a100Icon from "../../assets/a100_logo.png";
 import translateIcon from "../../assets/translate.svg";
 import reviewChatIcon from "../../assets/reviewChat.svg";
 import styles from "./ChatNavBar.module.scss";
+import clsx from "clsx";
 
 type NavItemProps = {
   iconSrc?: string;
   label: string;
 };
 
-const NavItem: React.FC<NavItemProps> = ({ iconSrc, label }) => (
+const NavItem: FC<NavItemProps> = ({ iconSrc, label }) => (
   <NavLink
     label={label}
     leftSection={
@@ -36,10 +38,10 @@ type ChatFooterProps = {
   isNavClosed: boolean;
 };
 
-const ChatNavBar: React.FC<ChatFooterProps> = ({ isNavClosed }) => {
+const ChatNavBar: FC<ChatFooterProps> = ({ isNavClosed }) => {
   return (
     <AppShell.Navbar
-      className={`${styles.navBar} ${isNavClosed && styles.navBarHidden}`}
+      className={clsx(styles.navBar, isNavClosed && styles.navBarHidden)}
     >
       <Stack gap={20}>
         <Box>
@@ -49,14 +51,14 @@ const ChatNavBar: React.FC<ChatFooterProps> = ({ isNavClosed }) => {
         </Box>
 
         <Box>
-          <Title fz='xs' c='#7D7D7D' mb={5}>
+          <Title fz='xs' c='var(--font-color-secondary)' mb={5}>
             Сегодня
           </Title>
           <NavItem label='Режим дискавери дорожная карта' />
         </Box>
 
         <Box>
-          <Title fz='xs' c='#7D7D7D' mb={5}>
+          <Title fz='xs' c='var(--font-color-secondary)' mb={5}>
             Предыдущие 7 дней
           </Title>
           <NavItem label='Новые офисные стулья' />
@@ -66,12 +68,12 @@ const ChatNavBar: React.FC<ChatFooterProps> = ({ isNavClosed }) => {
       </Stack>
 
       <Flex gap={8} align='center'>
-        <img src={updatePlanIcon} alt='Update plan icon' />
+        <Image src={updatePlanIcon} alt='Update plan icon' />
         <Box>
-          <Text fz='sm' fw={600}>
+          <Text fz='sm' fw='bold'>
             Обновить план
           </Text>
-          <Text fz='xs' fw={400} c='#B4B4B4'>
+          <Text fz='xs' fw='normal' c='var(--font-color-secondary-light)'>
             Получите CyberMan Plus и…
           </Text>
         </Box>
