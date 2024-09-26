@@ -16,11 +16,14 @@ export function RegisterPage() {
             ? "Заявка отправлена на модерацию. Ожидайте ответа на ваш e-mail!"
             : "Регистрация"
         }
-        subtitle={errorMessage}
+        subtitle={
+          !isRegistered && !errorMessage
+            ? "Введите данные для регистрации"
+            : errorMessage
+        }
+        isError={!!errorMessage}
       />
-      {!isRegistered && (
-        <p className="subtitle">Введите данные для регистрации</p>
-      )}
+
       {isRegistered ? null : (
         <RegistrationForm
           onSuccess={() => setIsRegistered(true)}

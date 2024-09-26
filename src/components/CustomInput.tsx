@@ -14,6 +14,7 @@ interface InputProps<T extends BaseFormValues> {
   field: keyof T;
   errors: FormErrors<T>;
   type?: string;
+  clearError: () => void;
 }
 
 export const CustomInput = <T extends BaseFormValues>({
@@ -24,7 +25,10 @@ export const CustomInput = <T extends BaseFormValues>({
   field,
   type = "text",
   errors,
+  clearError,
 }: InputProps<T>) => {
+  const inputProps = form.getInputProps(field);
+
   return (
     <TextInput
       label={label}
@@ -32,10 +36,18 @@ export const CustomInput = <T extends BaseFormValues>({
       size="md"
       required={required}
       type={type}
-      {...form.getInputProps(field)}
+      {...inputProps}
       error={<div className="input-password">{form.errors[field]}</div>}
       classNames={{
         input: "indent-0",
+      }}
+      onFocus={(event) => {
+        clearError();
+        inputProps.onFocus?.(event);
+      }}
+      onChange={(event) => {
+        clearError();
+        inputProps.onChange?.(event);
       }}
       styles={{
         input: {

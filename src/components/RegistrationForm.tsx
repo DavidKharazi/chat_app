@@ -4,16 +4,18 @@ import { CustomInput } from "./CustomInput";
 import { RegisterFormValues } from "../utils/FormTypes";
 import { validateRegisterForm } from "../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
+import { useState } from "react";
 
 interface RegistrationFormProps {
   onSuccess: () => void;
-  setErrorMessage: (message: string | null) => void; // Add this prop
+  setErrorMessage: (message: string | null) => void;
 }
 
 export const RegistrationForm: React.FC<RegistrationFormProps> = ({
   onSuccess,
   setErrorMessage,
 }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<RegisterFormValues>({
     initialValues: {
       email: "",
@@ -26,14 +28,16 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
 
   const handleSubmit = async (values: typeof form.values) => {
     try {
+      setLoading(true);
       await register({
         email: values.email,
         password: values.password,
       });
-
+      setLoading(false);
       onSuccess();
       setErrorMessage(null);
     } catch (error: unknown) {
+      setLoading(false);
       if (error instanceof Error) {
         console.error("Ошибка регистрации:", error.message);
 
@@ -41,6 +45,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
       }
     }
   };
+  const clearError = () => setErrorMessage(null);
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -52,6 +57,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         errors={form.errors}
         field="email"
         type="email"
+        clearError={clearError}
       />
       <CustomInput
         label="Пароль"
@@ -61,6 +67,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         errors={form.errors}
         field="password"
         type="password"
+        clearError={clearError}
       />
       <CustomInput
         label="Подтверждение пароля"
@@ -70,8 +77,9 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         errors={form.errors}
         field="confirmPassword"
         type="password"
+        clearError={clearError}
       />
-      <CustomFormButton type="submit" isValid={form.isValid()}>
+      <CustomFormButton type="submit" isValid={form.isValid()}  loading={loading}>
         Зарегистрироваться
       </CustomFormButton>
     </form>

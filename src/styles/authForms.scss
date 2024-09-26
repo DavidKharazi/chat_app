@@ -17,12 +17,12 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 15px;
 }
 
 .form-title {
-  font-family: "GeistSans";
-  font-size: 24px !important;
+  font-family: "GeistSans", "GeistSans Fallback";
+  font-size: 24px;
   font-weight: 600;
   margin: 0px;
   max-width: 380px;
@@ -31,8 +31,8 @@
 
 .subtitle {
   font-family: "GeistSans";
-  font-size: 14px !important;
-  color: grey !important;
+  font-size: 14px;
+  color: grey;
   margin: 0px;
 }
 
@@ -60,7 +60,7 @@
   text-align: center;
   font-family: "GeistSans";
   font-size: 18px;
-  color: grey;
+  color: #262627;
   margin: 0px;
 }
 
@@ -68,10 +68,17 @@
   cursor: pointer;
   font-family: "GeistSans";
   font-size: 18px;
-  color: grey;
+  color: #262627;
   margin: 0px;
 
   &:hover {
     text-decoration: underline;
   }
+}
+
+.error-message {
+  font-family: "GeistSans";
+  font-size: 16px;
+  color: rgb(247, 44, 44);
+  margin: 0px;
 }

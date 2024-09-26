@@ -6,6 +6,7 @@ interface CustomFormButtonProps {
   isValid: boolean;
   onClick?: () => void;
   children: React.ReactNode;
+  loading: boolean;
 }
 
 const CustomFormButton: React.FC<CustomFormButtonProps> = ({
@@ -13,6 +14,7 @@ const CustomFormButton: React.FC<CustomFormButtonProps> = ({
   isValid,
   onClick,
   children,
+  loading,
 }) => {
   const { hovered, ref } = useHover<HTMLButtonElement>();
 
@@ -23,9 +25,11 @@ const CustomFormButton: React.FC<CustomFormButtonProps> = ({
       variant="filled"
       disabled={!isValid}
       mt="md"
+      size="lg"
       color={hovered ? "#869bb1" : "#18181a"}
       ref={ref}
       onClick={onClick}
+      loading={loading}
     >
       {children}
     </Button>

@@ -8,6 +8,7 @@ export function ResetPasswordPage() {
   const [confirmationMessage, setConfirmationMessage] = useState<string | null>(
     null
   );
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   return (
     <Box className="container">
@@ -19,9 +20,17 @@ export function ResetPasswordPage() {
         <>
           <FormHeader
             title="Восстановление пароля"
-            subtitle="Укажите email для восстановления пароля"
+            subtitle={
+              errorMessage
+                ? errorMessage
+                : "Укажите email для восстановления пароля"
+            }
+            isError={!!errorMessage}
           />
-          <ResetPasswordForm onSuccess={setConfirmationMessage} />
+          <ResetPasswordForm
+            onSuccess={setConfirmationMessage}
+            setErrorMessage={setErrorMessage}
+          />
         </>
       )}
       <RegisterPageLinks resetText=" " />

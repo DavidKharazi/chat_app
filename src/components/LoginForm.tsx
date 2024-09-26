@@ -4,12 +4,15 @@ import { CustomInput } from "./CustomInput";
 import { LoginFormValues } from "../utils/FormTypes";
 import { validateLoginForm } from "../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 interface LoginFormProps {
-  onSuccess: () => void;
+  setErrorMessage: (message: string | null) => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<LoginFormValues>({
     initialValues: {
       email: "",
@@ -18,15 +21,24 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
     validateInputOnChange: true,
     validate: validateLoginForm,
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (values: typeof form.values) => {
     try {
+      setLoading(true);
       await login(values);
-      onSuccess();
+      setLoading(false);
+      setErrorMessage(null);
+      navigate("/chat");
     } catch (error: any) {
-      console.error("Ошибка авторизации:", error.message);
+      if (error instanceof Error) {
+        setLoading(false);
+        console.error("Ошибка авторизации:", error.message);
+        setErrorMessage(error.message);
+      }
     }
   };
+  const clearError = () => setErrorMessage(null);
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -38,6 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
         errors={form.errors}
         field="email"
         type="email"
+        clearError={clearError}
       />
 
       <CustomInput
@@ -48,8 +61,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
         errors={form.errors}
         field="password"
         type="password"
+        clearError={clearError}
       />
-      <CustomFormButton type="submit" isValid={form.isValid()}>
+      <CustomFormButton
+        type="submit"
+        isValid={form.isValid()}
+        loading={loading}
+      >
         Войти
       </CustomFormButton>
     </form>

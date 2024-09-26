@@ -3,14 +3,18 @@ import { resetPassword } from "../Services/resetPassword";
 import { CustomInput } from "./CustomInput";
 import { BaseFormValues } from "../utils/FormTypes";
 import CustomFormButton from "./CustomFormButton";
+import { useState } from "react";
 
 interface ResetPasswordFormProps {
   onSuccess: (message: string) => void;
+  setErrorMessage: (message: string | null) => void;
 }
 
 export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   onSuccess,
+  setErrorMessage,
 }) => {
+  const [loading, setLoading] = useState<boolean>(false);
   const form = useForm<BaseFormValues>({
     initialValues: {
       email: "",
@@ -23,14 +27,22 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
 
   const handleSubmit = async (values: typeof form.values) => {
     try {
+      setLoading(true);
       await resetPassword(values.email);
+      setLoading(false);
       onSuccess(
         "Ссылка для сброса пароля отправлена на ваш email. Проверьте так же папку 'Спам'"
       );
-    } catch (error: any) {
-      console.error("Не удалось восстановить пароль:", error.message);
+      setErrorMessage(null);
+    } catch (error: unknown) {
+      setLoading(false);
+      if (error instanceof Error) {
+        console.error("Не удалось восстановить пароль:", error.message);
+        setErrorMessage(error.message);
+      }
     }
   };
+  const clearError = () => setErrorMessage(null);
 
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -42,8 +54,13 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
         errors={form.errors}
         field="email"
         type="email"
+        clearError={clearError}
       />
-      <CustomFormButton type="submit" isValid={form.isValid()}>
+      <CustomFormButton
+        type="submit"
+        isValid={form.isValid()}
+        loading={loading}
+      >
         Отправить инструкции
       </CustomFormButton>
     </form>
