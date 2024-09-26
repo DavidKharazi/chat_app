@@ -1,0 +1,76 @@
+.container {
+  min-width: 380px;
+  max-width: 650px;
+  margin: auto;
+  border: 1px solid #b1bfcc;
+  border-radius: 7px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subcontainer {
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.title {
+  font-family: "GeistSans";
+  font-size: 24px;
+  margin: 0px;
+  max-width: "380px";
+  word-wrap: "break-word";
+}
+
+.subtitle {
+  font-family: "GeistSans";
+  font-size: 14px;
+  color: grey;
+  margin: 0px;
+}
+
+.input-email {
+  max-width: 350px;
+  word-wrap: break-word;
+  min-height: 30px;
+  margin: 0;
+}
+
+.input-password {
+  max-width: 350px;
+  word-wrap: break-word;
+  min-height: 45px;
+}
+
+.input-forgot-password {
+  max-width: 350px;
+  word-wrap: break-word;
+  min-height: 20px;
+  margin: 0;
+}
+
+.text-info {
+  text-align: center;
+  font-family: "GeistSans";
+  font-size: 18px;
+  color: grey;
+  margin: 0px;
+}
+
+.text-link {
+  cursor: pointer;
+  font-family: "GeistSans";
+  font-size: 18px;
+  color: grey;
+  margin: 0px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
