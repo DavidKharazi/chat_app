@@ -45,7 +45,7 @@ export const register = async (credentials: RegisterCredentials) => {
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
     //const response = await fetch("https://chatnsv.up.railway.app/register/", {
-    const response = await fetch("https://chata100.up.railway.app/register/", {
+    const response = await fetch("https://chata100.up.railway.app/register", {
       method: "POST",
 
       body: formData,
