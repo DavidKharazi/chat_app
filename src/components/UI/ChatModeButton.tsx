@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Image, Menu } from "@mantine/core";
-import buttonArrow from "../assets/buttonArrow.svg";
+import buttonArrow from "../../assets/buttonArrow.svg";
 
 const ChatModeButton = () => {
   const [opened, setOpened] = useState(false);
@@ -11,7 +11,7 @@ const ChatModeButton = () => {
         <Button
           color='var(--font-color-secondary)'
           variant='transparent'
-          rightSection={<Image src={buttonArrow} />}
+          rightSection={<Image w={10.5} src={buttonArrow} />}
         >
           CyberMan A100
         </Button>

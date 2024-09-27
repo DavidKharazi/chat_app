@@ -1,15 +1,29 @@
 .footer {
   padding-left: 260px;
   padding-bottom: 20px;
+  padding-right: 12px;
   display: flex;
   justify-content: center;
-  transition: padding 0.3s ease-in-out;
+  z-index: 99;
+  transition:
+    padding 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 }
 
-.withoutPadding {
+.noLeftPadding {
   padding-left: 0;
 }
 
 .input {
   border: none;
+}
+
+.questionIcon {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
 }

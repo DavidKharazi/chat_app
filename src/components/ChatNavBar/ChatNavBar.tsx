@@ -15,6 +15,8 @@ import translateIcon from "../../assets/translate.svg";
 import reviewChatIcon from "../../assets/reviewChat.svg";
 import styles from "./ChatNavBar.module.scss";
 import clsx from "clsx";
+import Avatar from "../UI/Avatar";
+import NavMenuButton from "../UI/NavMenuButton";
 
 type NavItemProps = {
   iconSrc?: string;
@@ -25,7 +27,7 @@ const NavItem: FC<NavItemProps> = ({ iconSrc, label }) => (
   <NavLink
     label={label}
     leftSection={
-      iconSrc && <img width={24} src={iconSrc} alt={`${label} icon`} />
+      iconSrc && <Image w={24} src={iconSrc} alt={`${label} icon`} />
     }
     variant='subtle'
     component='a'
@@ -36,13 +38,15 @@ const NavItem: FC<NavItemProps> = ({ iconSrc, label }) => (
 
 type ChatFooterProps = {
   isNavClosed: boolean;
+  toggleNav: () => void;
 };
 
-const ChatNavBar: FC<ChatFooterProps> = ({ isNavClosed }) => {
+const ChatNavBar: FC<ChatFooterProps> = ({ isNavClosed, toggleNav }) => {
   return (
     <AppShell.Navbar
       className={clsx(styles.navBar, isNavClosed && styles.navBarHidden)}
     >
+      <NavMenuButton onClick={toggleNav} hiddenFrom='sm' />
       <Stack gap={20}>
         <Box>
           <NavItem iconSrc={a100Icon} label='CyberMan A100' />
@@ -66,18 +70,23 @@ const ChatNavBar: FC<ChatFooterProps> = ({ isNavClosed }) => {
           <NavItem label='Новый чат' />
         </Box>
       </Stack>
-
-      <Flex gap={8} align='center'>
-        <Image src={updatePlanIcon} alt='Update plan icon' />
-        <Box>
-          <Text fz='sm' fw='bold'>
-            Обновить план
-          </Text>
-          <Text fz='xs' fw='normal' c='var(--font-color-secondary-light)'>
-            Получите CyberMan Plus и…
-          </Text>
-        </Box>
-      </Flex>
+      <Box>
+        <Flex gap={8} px={8} py={10} align='center'>
+          <Image w={22} src={updatePlanIcon} alt='Update plan icon' />
+          <Box>
+            <Text fz='sm' fw='bold'>
+              Обновить план
+            </Text>
+            <Text fz='xs' fw='normal' c='var(--font-color-secondary-light)'>
+              Получите CyberMan Plus и…
+            </Text>
+          </Box>
+        </Flex>
+        <Flex px={8} py={10} align='center' gap={8} hiddenFrom='sm'>
+          <Avatar />
+          <Text>Utlik Dmitry</Text>
+        </Flex>
+      </Box>
     </AppShell.Navbar>
   );
 };

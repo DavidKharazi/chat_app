@@ -1,10 +1,12 @@
-import { Stack, AppShell, Paper, Text, SimpleGrid, Image } from "@mantine/core";
+import { AppShell, Paper, Text, SimpleGrid, Image, Box } from "@mantine/core";
 import { FC } from "react";
-import logo_a100 from "../assets/a100_logo.png";
-import bulbIcon from "../assets/bulb.svg";
-import capIcon from "../assets/cap.svg";
-import penIcon from "../assets/pen.svg";
-import planeIcon from "../assets/plane.svg";
+import logo_a100 from "../../assets/a100_logo.png";
+import bulbIcon from "../../assets/bulb.svg";
+import capIcon from "../../assets/cap.svg";
+import penIcon from "../../assets/pen.svg";
+import planeIcon from "../../assets/plane.svg";
+import styles from "./ChatMainBlock.module.scss";
+import clsx from "clsx";
 
 type InfoCardProps = {
   icon: string;
@@ -25,14 +27,13 @@ type ChatMainBlockProps = {
 const ChatMainBlock: FC<ChatMainBlockProps> = ({ isNavClosed }) => {
   return (
     <AppShell.Main
-      pl={isNavClosed ? 0 : 260}
-      style={{ transition: "padding 0.3s ease-in-out" }}
+      className={clsx(styles.main, isNavClosed && styles.noLeftPadding)}
     >
-      <Stack align='center' pt={130}>
+      <Box className={styles.mainContent}>
         <Image w={114} src={logo_a100} alt='A100 Logo' />
         <SimpleGrid
-          cols={{ base: 2, sm: 4 }}
-          spacing={{ base: 10, sm: "md" }}
+          cols={{ base: 2, md: 4 }}
+          spacing={{ base: 10, md: "md" }}
           verticalSpacing='md'
         >
           <InfoCard icon={capIcon} text='Как создать проект в системе?' />
@@ -40,7 +41,7 @@ const ChatMainBlock: FC<ChatMainBlockProps> = ({ isNavClosed }) => {
           <InfoCard icon={bulbIcon} text='Как сохранить проект?' />
           <InfoCard icon={planeIcon} text='Правильное сохрание файла' />
         </SimpleGrid>
-      </Stack>
+      </Box>
     </AppShell.Main>
   );
 };
