@@ -1,19 +1,12 @@
-import {
-  ActionIcon,
-  AppShell,
-  Avatar,
-  Box,
-  Burger,
-  Flex,
-  Group,
-  Image,
-} from "@mantine/core";
+import { AppShell, Box, Flex, Overlay } from "@mantine/core";
 import { FC } from "react";
-import ChatModeButton from "../ChatModeButton";
-import menuButtonIcon from "../../assets/menuButton.svg";
-import newChatButtonIcon from "../../assets/newChatButton.svg";
+import ChatModeButton from "../UI/ChatModeButton";
 import styles from "./ChatHeader.module.scss";
 import clsx from "clsx";
+import Avatar from "../UI/Avatar";
+import CreateChatButton from "../UI/CreateChatButton";
+import { useMediaQuery } from "@mantine/hooks";
+import NavMenuButton from "../UI/NavMenuButton";
 
 type ChatHeaderProps = {
   isNavClosed: boolean;
@@ -21,35 +14,28 @@ type ChatHeaderProps = {
 };
 
 const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
+  const matches = useMediaQuery("(min-width: 768px)");
+
   return (
     <AppShell.Header>
-      <Burger
-        opened={!isNavClosed}
-        onClick={toggleNav}
-        hiddenFrom='sm'
-        size='sm'
-      />
-      <Flex h='100%' visibleFrom='sm'>
+      <Flex h='100%'>
         <Box
           className={clsx(
-            styles.headerButtons,
-            isNavClosed && styles.compactHeaderButtons
+            styles.leftButtonsGroup,
+            isNavClosed && styles.compactLeftButtonsGroup
           )}
         >
-          <ActionIcon size={40} variant='transparent' onClick={toggleNav}>
-            <Image src={menuButtonIcon} />
-          </ActionIcon>
-          <ActionIcon size={40} variant='transparent'>
-            <Image src={newChatButtonIcon} />
-          </ActionIcon>
+          <NavMenuButton onClick={toggleNav} />
+          <CreateChatButton className={styles.createChatButton} />
         </Box>
-        <Group justify='space-between' flex={1} px={12} py={8}>
+        <Box className={styles.rightButtonsGroup}>
           <ChatModeButton />
-          <Avatar variant='filled' color='pink' radius='xl'>
-            UT
-          </Avatar>
-        </Group>
+          <Avatar visibleFrom='sm' />
+        </Box>
       </Flex>
+      {!isNavClosed && !matches && (
+        <Overlay onClick={toggleNav} color='#fff' opacity={0.9} zIndex={99} />
+      )}
     </AppShell.Header>
   );
 };

@@ -1,9 +1,19 @@
 .navBar {
-  padding: 12px;
+  max-width: 260px;
+  padding: 0 12px;
   background-color: var(--background-color-secondary);
   justify-content: space-between;
   transform: translate(0%);
   transition: transform 0.3s ease-in-out;
+
+  @media (max-width: 767px) {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: var(--background-color-primary);
+    border-right: 1px solid var(--burger-border-color);
+    padding-top: 8px;
+  }
 }
 
 .navBarHidden {
