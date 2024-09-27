@@ -18,7 +18,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
 
   return (
     <AppShell.Header>
-      <Flex h='100%'>
+      <Flex h="100%">
         <Box
           className={clsx(
             styles.leftButtonsGroup,
@@ -30,11 +30,11 @@ const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
         </Box>
         <Box className={styles.rightButtonsGroup}>
           <ChatModeButton />
-          <Avatar visibleFrom='sm' />
+          <Avatar visibleFrom="sm" />
         </Box>
       </Flex>
       {!isNavClosed && !matches && (
-        <Overlay onClick={toggleNav} color='#fff' opacity={0.9} zIndex={99} />
+        <Overlay onClick={toggleNav} color="#fff" opacity={0.9} zIndex={99} />
       )}
     </AppShell.Header>
   );
