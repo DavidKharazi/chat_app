@@ -16,8 +16,6 @@ export function ChatPage() {
   const [isNavClosed, { toggle: toggleNav }] = useDisclosure();
   const matches = useMediaQuery("(min-width: 768px)");
 
-  console.log("matches :>> ", matches);
-
   useEffect(() => {
     if ((!matches && !isNavClosed) || matches) {
       toggleNav();
