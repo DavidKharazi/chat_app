@@ -1,7 +1,7 @@
 import { useForm } from "@mantine/form";
 import { register } from "../Services/authService";
 import { CustomInput } from "./CustomInput";
-import { RegisterFormValues } from "../utils/FormTypes";
+import { RegisterFormValues } from "../Types/FormTypes";
 import { validateRegisterForm } from "../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
@@ -79,7 +79,11 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         type="password"
         clearError={clearError}
       />
-      <CustomFormButton type="submit" isValid={form.isValid()}  loading={loading}>
+      <CustomFormButton
+        type="submit"
+        isValid={form.isValid()}
+        loading={loading}
+      >
         Зарегистрироваться
       </CustomFormButton>
     </form>

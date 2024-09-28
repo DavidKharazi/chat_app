@@ -1,6 +1,6 @@
 import { TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
-import { BaseFormValues } from "../utils/FormTypes";
+import { BaseFormValues } from "../Types/FormTypes";
 
 type FormErrors<T> = {
   [K in keyof T]?: string;

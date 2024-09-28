@@ -1,7 +1,7 @@
 import { useForm } from "@mantine/form";
 import { login } from "../Services/authService";
 import { CustomInput } from "./CustomInput";
-import { LoginFormValues } from "../utils/FormTypes";
+import { LoginFormValues } from "../Types/FormTypes";
 import { validateLoginForm } from "../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
 import { useNavigate } from "react-router-dom";

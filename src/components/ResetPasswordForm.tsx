@@ -1,7 +1,7 @@
 import { useForm } from "@mantine/form";
 import { resetPassword } from "../Services/resetPassword";
 import { CustomInput } from "./CustomInput";
-import { BaseFormValues } from "../utils/FormTypes";
+import { BaseFormValues } from "../Types/FormTypes";
 import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
 
