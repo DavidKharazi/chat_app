@@ -1,8 +1,8 @@
 import { Box, Text } from "@mantine/core";
 import { useState } from "react";
-import { ResetPasswordForm } from "../components/ResetPasswordForm";
-import { RegisterPageLinks } from "../components/RegisterPageLinks";
-import { FormHeader } from "../components/FormHeader";
+import { ResetPasswordForm } from "../components/Forms/ResetPasswordForm";
+import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
+import { FormHeader } from "../components/Forms/FormHeader";
 
 export function ResetPasswordPage() {
   const [confirmationMessage, setConfirmationMessage] = useState<string | null>(

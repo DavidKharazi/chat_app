@@ -8,6 +8,16 @@ interface RegisterCredentials {
   password: string;
 }
 
+enum AuthMessages {
+  AuthorizationFailed = "Ошибка авторизации",
+  RegistrationFailed = "Ошибка регистрации",
+  UnknownError = "Произошла неизвестная ошибка",
+}
+
+const BASE_URL = "https://chata100.up.railway.app"; //https://chatnsv.up.railway.app
+const LOGIN_URL = `${BASE_URL}/login`;
+const REGISTER_URL = `${BASE_URL}/register`; ///register/
+
 export const login = async (credentials: LoginCredentials) => {
   try {
     const formData = new FormData();
@@ -15,24 +25,26 @@ export const login = async (credentials: LoginCredentials) => {
     //  formData.append("password", credentials.email);
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
-    // const response = await fetch("https://chatnsv.up.railway.app/login", {
-    const response = await fetch("https://chata100.up.railway.app/login", {
+
+    const response = await fetch(LOGIN_URL, {
       method: "POST",
       body: formData,
     });
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Ошибка авторизации");
+      throw new Error(errorData.message || AuthMessages.AuthorizationFailed);
     }
 
     const data = await response.json();
-    console.log("Авторизация успешна:", data);
     return data;
   } catch (error: unknown) {
     if (error instanceof Error) {
-      console.error("Ошибка авторизации:", error.message);
-      throw new Error(error.message || "Ошибка авторизации");
+      console.error(AuthMessages.AuthorizationFailed, error.message);
+      throw new Error(error.message || AuthMessages.AuthorizationFailed);
+    } else {
+      console.error(AuthMessages.UnknownError);
+      throw new Error(AuthMessages.UnknownError);
     }
   }
 };
@@ -44,8 +56,8 @@ export const register = async (credentials: RegisterCredentials) => {
     //  formData.append("password", credentials.email);
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
-    //const response = await fetch("https://chatnsv.up.railway.app/register/", {
-    const response = await fetch("https://chata100.up.railway.app/register", {
+
+    const response = await fetch(REGISTER_URL, {
       method: "POST",
 
       body: formData,
@@ -53,15 +65,20 @@ export const register = async (credentials: RegisterCredentials) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.error("Ошибка регистрации:", errorData);
-      throw new Error(errorData.message || "Ошибка регистрации");
+      console.error(AuthMessages.RegistrationFailed, errorData);
+      throw new Error(errorData.message || AuthMessages.RegistrationFailed);
     }
 
     const data = await response.json();
-    console.log("Регистрация прошла успешно:", data);
+
     return data;
-  } catch (error: any) {
-    console.error("Ошибка регистрации:", error.message);
-    throw new Error(error.message || "Ошибка регистрации");
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(AuthMessages.RegistrationFailed, error.message);
+      throw new Error(error.message || AuthMessages.RegistrationFailed);
+    } else {
+      console.error(AuthMessages.UnknownError);
+      throw new Error(AuthMessages.UnknownError);
+    }
   }
 };

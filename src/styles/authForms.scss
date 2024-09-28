@@ -82,3 +82,12 @@
   color: rgb(247, 44, 44);
   margin: 0px;
 }
+
+.form-button {
+  color: white;
+  background-color: #10a37f;
+
+  &:hover {
+    background-color: #067257;
+  }
+}

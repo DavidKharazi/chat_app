@@ -1,39 +1,46 @@
 import { useForm } from "@mantine/form";
-import { login } from "../Services/authService";
+import { register } from "../../Services/authService";
 import { CustomInput } from "./CustomInput";
-import { LoginFormValues } from "../Types/FormTypes";
-import { validateLoginForm } from "../utils/formValidations";
+import { RegisterFormValues } from "../../Types/FormTypes";
+import { validateRegisterForm } from "../../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-interface LoginFormProps {
+interface RegistrationFormProps {
+  onSuccess: () => void;
   setErrorMessage: (message: string | null) => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
+export const RegistrationForm: React.FC<RegistrationFormProps> = ({
+  onSuccess,
+  setErrorMessage,
+}) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const form = useForm<LoginFormValues>({
+  const form = useForm<RegisterFormValues>({
     initialValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
     validateInputOnChange: true,
-    validate: validateLoginForm,
+    validate: validateRegisterForm,
   });
-  const navigate = useNavigate();
 
   const handleSubmit = async (values: typeof form.values) => {
     try {
       setLoading(true);
-      await login(values);
+      await register({
+        email: values.email,
+        password: values.password,
+      });
       setLoading(false);
+      onSuccess();
       setErrorMessage(null);
-      navigate("/chat");
-    } catch (error: any) {
+    } catch (error: unknown) {
+      setLoading(false);
       if (error instanceof Error) {
-        setLoading(false);
-        console.error("Ошибка авторизации:", error.message);
+        console.error("Ошибка регистрации:", error.message);
+
         setErrorMessage(error.message);
       }
     }
@@ -52,7 +59,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         type="email"
         clearError={clearError}
       />
-
       <CustomInput
         label="Пароль"
         placeholder="Введите пароль"
@@ -63,12 +69,22 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         type="password"
         clearError={clearError}
       />
+      <CustomInput
+        label="Подтверждение пароля"
+        placeholder="Повторите пароль"
+        required
+        form={form}
+        errors={form.errors}
+        field="confirmPassword"
+        type="password"
+        clearError={clearError}
+      />
       <CustomFormButton
         type="submit"
         isValid={form.isValid()}
         loading={loading}
       >
-        Войти
+        Зарегистрироваться
       </CustomFormButton>
     </form>
   );

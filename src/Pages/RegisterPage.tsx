@@ -1,8 +1,8 @@
 import { Box } from "@mantine/core";
 import { useState } from "react";
-import { RegistrationForm } from "../components/RegistrationForm";
-import { RegisterPageLinks } from "../components/RegisterPageLinks";
-import { FormHeader } from "../components/FormHeader";
+import { RegistrationForm } from "../components/Forms/RegistrationForm";
+import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
+import { FormHeader } from "../components/Forms/FormHeader";
 
 export function RegisterPage() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -14,7 +14,7 @@ export function RegisterPage() {
         title={
           isRegistered
             ? "Заявка отправлена на модерацию. Ожидайте ответа на ваш e-mail!"
-            : "Регистрация"
+            : "Создать аккаунт"
         }
         subtitle={
           !isRegistered && !errorMessage

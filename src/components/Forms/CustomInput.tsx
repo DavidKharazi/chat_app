@@ -1,6 +1,7 @@
 import { TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
-import { BaseFormValues } from "../Types/FormTypes";
+import { BaseFormValues } from "../../Types/FormTypes";
+import { ErrorMessage } from "./ErrorMessage";
 
 type FormErrors<T> = {
   [K in keyof T]?: string;
@@ -37,7 +38,7 @@ export const CustomInput = <T extends BaseFormValues>({
       required={required}
       type={type}
       {...inputProps}
-      error={<div className="input-password">{form.errors[field]}</div>}
+      error={<ErrorMessage error={form.errors[field]} />}
       classNames={{
         input: "indent-0",
       }}

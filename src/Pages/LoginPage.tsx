@@ -1,7 +1,7 @@
 import { Box } from "@mantine/core";
-import { LoginForm } from "../components/LoginForm";
-import { LoginPageLinks } from "../components/LoginPageLinks";
-import { FormHeader } from "../components/FormHeader";
+import { LoginForm } from "../components/Forms/LoginForm";
+import { LoginPageLinks } from "../components/Forms/LoginPageLinks";
+import { FormHeader } from "../components/Forms/FormHeader";
 import { useState } from "react";
 
 export function LoginPage() {

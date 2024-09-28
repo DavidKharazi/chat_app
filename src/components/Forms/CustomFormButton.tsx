@@ -20,6 +20,7 @@ const CustomFormButton: React.FC<CustomFormButtonProps> = ({
 
   return (
     <Button
+      className="form-button"
       type={type}
       fullWidth
       variant="filled"
