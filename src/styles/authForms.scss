@@ -2,7 +2,6 @@
   min-width: 380px;
   max-width: 650px;
   margin: auto;
-  border: 1px solid #b1bfcc;
   border-radius: 7px;
   padding: 15px;
   display: flex;
@@ -68,7 +67,7 @@
   cursor: pointer;
   font-family: "GeistSans";
   font-size: 18px;
-  color: #262627;
+  color: #067257;
   margin: 0px;
 
   &:hover {
@@ -90,4 +89,8 @@
   &:hover {
     background-color: #067257;
   }
+}
+
+.form-logo {
+  align-self: center;
 }
