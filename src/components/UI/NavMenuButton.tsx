@@ -17,12 +17,12 @@ const NavMenuButton: FC<NavMenuButton> = (props) => {
   return (
     <ActionIcon
       size={40}
-      variant='transparent'
+      variant="transparent"
       onClick={handleMenuClick}
       {...props}
     >
-      <Image w={40} src={burgerIcon} hiddenFrom='sm' />
-      <Image w={40} src={menuButtonIcon} visibleFrom='sm' />
+      <Image w={40} src={burgerIcon} hiddenFrom="sm" />
+      <Image w={40} src={menuButtonIcon} visibleFrom="sm" />
     </ActionIcon>
   );
 };
