@@ -7,6 +7,7 @@ import penIcon from "../../assets/pen.svg";
 import planeIcon from "../../assets/plane.svg";
 import styles from "./ChatMainBlock.module.scss";
 import clsx from "clsx";
+import { useAppSelector } from "../../store/hooks";
 
 type InfoCardProps = {
   icon: string;
@@ -20,11 +21,9 @@ const InfoCard: FC<InfoCardProps> = ({ icon, text }) => (
   </Paper>
 );
 
-type ChatMainBlockProps = {
-  isNavClosed: boolean;
-};
+const ChatMainBlock = () => {
+  const isNavClosed = useAppSelector((state) => state.navBar.isNavClosed);
 
-const ChatMainBlock: FC<ChatMainBlockProps> = ({ isNavClosed }) => {
   return (
     <AppShell.Main
       className={clsx(styles.main, isNavClosed && styles.noLeftPadding)}

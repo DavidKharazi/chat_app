@@ -1,20 +1,15 @@
-import { AppShell, Box, Flex, Overlay } from "@mantine/core";
-import { FC } from "react";
+import { AppShell, Box, Flex } from "@mantine/core";
 import ChatModeButton from "../UI/ChatModeButton";
 import styles from "./ChatHeader.module.scss";
 import clsx from "clsx";
 import Avatar from "../UI/Avatar";
 import CreateChatButton from "../UI/CreateChatButton";
-import { useMediaQuery } from "@mantine/hooks";
 import NavMenuButton from "../UI/NavMenuButton";
+import { useAppSelector } from "../../store/hooks";
+import NavOverlay from "../UI/NavOverlay";
 
-type ChatHeaderProps = {
-  isNavClosed: boolean;
-  toggleNav: () => void;
-};
-
-const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
-  const matches = useMediaQuery("(min-width: 768px)");
+const ChatHeader = () => {
+  const isNavClosed = useAppSelector((state) => state.navBar.isNavClosed);
 
   return (
     <AppShell.Header>
@@ -25,7 +20,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
             isNavClosed && styles.compactLeftButtonsGroup
           )}
         >
-          <NavMenuButton onClick={toggleNav} />
+          <NavMenuButton />
           <CreateChatButton className={styles.createChatButton} />
         </Box>
         <Box className={styles.rightButtonsGroup}>
@@ -33,9 +28,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({ isNavClosed, toggleNav }) => {
           <Avatar visibleFrom='sm' />
         </Box>
       </Flex>
-      {!isNavClosed && !matches && (
-        <Overlay onClick={toggleNav} color='#fff' opacity={0.9} zIndex={99} />
-      )}
+      <NavOverlay />
     </AppShell.Header>
   );
 };

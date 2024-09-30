@@ -1,10 +1,10 @@
-import { AppShell, Overlay } from "@mantine/core";
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+import { AppShell } from "@mantine/core";
 import ChatFooter from "../components/ChatFooter/ChatFooter";
 import ChatHeader from "../components/ChatHeader/ChatHeader";
 import ChatNavBar from "../components/ChatNavBar/ChatNavBar";
 import ChatMainBlock from "../components/ChatMainBlock/ChatMainBlock";
-import { useEffect } from "react";
+import { useAppSelector } from "../store/hooks";
+import NavOverlay from "../components/UI/NavOverlay";
 
 const HEADER_CONFIG = { height: 60 };
 const NAVBAR_CONFIG = {
@@ -13,14 +13,7 @@ const NAVBAR_CONFIG = {
 };
 
 export function ChatPage() {
-  const [isNavClosed, { toggle: toggleNav }] = useDisclosure();
-  const matches = useMediaQuery("(min-width: 768px)");
-
-  useEffect(() => {
-    if ((!matches && !isNavClosed) || matches) {
-      toggleNav();
-    }
-  }, [matches]);
+  const isNavClosed = useAppSelector((state) => state.navBar.isNavClosed);
 
   return (
     <AppShell
@@ -31,18 +24,11 @@ export function ChatPage() {
       }}
       withBorder={false}
     >
-      <ChatHeader isNavClosed={isNavClosed} toggleNav={toggleNav} />
-      <ChatNavBar isNavClosed={isNavClosed} toggleNav={toggleNav} />
-      <ChatMainBlock isNavClosed={isNavClosed} />
-      <ChatFooter isNavClosed={isNavClosed} />
-      {!isNavClosed && !matches && (
-        <Overlay
-          onClick={toggleNav}
-          color='var(--background-color-primary)'
-          opacity={0.9}
-          zIndex={99}
-        />
-      )}
+      <ChatHeader />
+      <ChatNavBar />
+      <ChatMainBlock />
+      <ChatFooter />
+      <NavOverlay />
     </AppShell>
   );
 }
