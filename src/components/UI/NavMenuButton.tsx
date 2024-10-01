@@ -10,11 +10,15 @@ type NavMenuButton = ActionIconProps & ButtonHTMLAttributes<HTMLButtonElement>;
 const NavMenuButton: FC<NavMenuButton> = (props) => {
   const dispatch = useAppDispatch();
 
+  const handleMenuClick = () => {
+    dispatch(toggleNav());
+  };
+
   return (
     <ActionIcon
       size={40}
       variant='transparent'
-      onClick={() => dispatch(toggleNav())}
+      onClick={handleMenuClick}
       {...props}
     >
       <Image w={40} src={burgerIcon} hiddenFrom='sm' />
