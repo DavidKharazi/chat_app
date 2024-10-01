@@ -4,18 +4,19 @@ import { RegistrationForm } from "../components/Forms/RegistrationForm";
 import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
 import { FormHeader } from "../components/Forms/FormHeader";
 import logo_a100 from "../assets/a100_logo.png";
+import { FormConstants } from "../utils/formConstants";
 
 export function RegisterPage() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const formHeaderTitle = isRegistered
-    ? "Заявка отправлена на модерацию. Ожидайте ответа на ваш e-mail!"
-    : "Создать аккаунт";
+    ? FormConstants.REGISTER_TITLE_PENDING
+    : FormConstants.REGISTER_TITLE;
 
   const formHeaderSubtitle =
     !isRegistered && !errorMessage
-      ? "Введите данные для регистрации"
+      ? FormConstants.REGISTER_SUBTITLE_DEFAULT
       : errorMessage;
 
   const linkText = "Уже есть учетная запись?";

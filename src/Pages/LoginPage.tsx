@@ -4,19 +4,18 @@ import { LoginPageLinks } from "../components/Forms/LoginPageLinks";
 import { FormHeader } from "../components/Forms/FormHeader";
 import { useState } from "react";
 import logo_a100 from "../assets/a100_logo.png";
+import { FormConstants } from "../utils/formConstants";
 
 export function LoginPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const signUp = "Войдите в свой аккаунт";
-  const formTitle = "Вход";
-  const formHeaderSubtitle = errorMessage ? errorMessage : signUp;
+  const formHeaderSubtitle = errorMessage || FormConstants.LOGIN_SUBTITLE;
 
   return (
     <Box className="container">
       <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
       <FormHeader
-        title={formTitle}
+        title={FormConstants.LOGIN_TITLE}
         subtitle={formHeaderSubtitle}
         isError={Boolean(errorMessage)}
       />

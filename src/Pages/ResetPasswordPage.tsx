@@ -4,6 +4,7 @@ import { ResetPasswordForm } from "../components/Forms/ResetPasswordForm";
 import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
 import { FormHeader } from "../components/Forms/FormHeader";
 import logo_a100 from "../assets/a100_logo.png";
+import { FormConstants } from "../utils/formConstants";
 
 export function ResetPasswordPage() {
   const [confirmationMessage, setConfirmationMessage] = useState<string | null>(
@@ -11,11 +12,9 @@ export function ResetPasswordPage() {
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const formHeaderSubtitle = errorMessage
-    ? errorMessage
-    : "Укажите email для восстановления пароля";
+  const formHeaderSubtitle =
+    errorMessage || FormConstants.RESET_PASSWORD_SUBTITLE_DEFAULT;
 
-  const formHeaderTitle = "Восстановление пароля";
   return (
     <Box className="container">
       <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
@@ -26,7 +25,7 @@ export function ResetPasswordPage() {
       ) : (
         <>
           <FormHeader
-            title={formHeaderTitle}
+            title={FormConstants.RESET_PASSWORD_TITLE}
             subtitle={formHeaderSubtitle}
             isError={Boolean(errorMessage)}
           />
