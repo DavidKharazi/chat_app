@@ -11,6 +11,11 @@ export function ResetPasswordPage() {
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const formHeaderSubtitle = errorMessage
+    ? errorMessage
+    : "Укажите email для восстановления пароля";
+
+  const formHeaderTitle = "Восстановление пароля";
   return (
     <Box className="container">
       <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
@@ -21,13 +26,9 @@ export function ResetPasswordPage() {
       ) : (
         <>
           <FormHeader
-            title="Восстановление пароля"
-            subtitle={
-              errorMessage
-                ? errorMessage
-                : "Укажите email для восстановления пароля"
-            }
-            isError={!!errorMessage}
+            title={formHeaderTitle}
+            subtitle={formHeaderSubtitle}
+            isError={Boolean(errorMessage)}
           />
           <ResetPasswordForm
             onSuccess={setConfirmationMessage}

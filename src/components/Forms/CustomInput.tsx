@@ -35,6 +35,7 @@ export const CustomInput = <T extends BaseFormValues>({
       label={label}
       placeholder={placeholder}
       size="md"
+      w={350}
       required={required}
       type={type}
       {...inputProps}

@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 export const LoginPageLinks = () => {
   const navigate = useNavigate();
 
+  const register = "/register";
+
+  const resetPassword = "/reset-password";
   return (
     <>
       <Text className="text-info" mt="md">
@@ -11,7 +14,7 @@ export const LoginPageLinks = () => {
         <Text
           component="span"
           className="text-link"
-          onClick={() => navigate("/register")}
+          onClick={() => navigate(register)}
         >
           Зарегистрируйтесь
         </Text>
@@ -21,7 +24,7 @@ export const LoginPageLinks = () => {
         <Text
           component="span"
           className="text-link"
-          onClick={() => navigate("/reset-password")}
+          onClick={() => navigate(resetPassword)}
         >
           Сбросить пароль
         </Text>

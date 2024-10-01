@@ -1,9 +1,11 @@
 import { ReactNode } from "react";
 
 interface ErrorMessageProps {
-  error: ReactNode;
+  error: ReactNode | ReactNode[];
 }
 
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
-  return <div className="input-password">{error}</div>;
+  // if (!error) return null;
+
+  return <span className="input-password">{error}</span>;
 };

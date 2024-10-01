@@ -7,13 +7,18 @@ import logo_a100 from "../assets/a100_logo.png";
 
 export function LoginPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const signUp = "Войдите в свой аккаунт";
+  const formTitle = "Вход";
+  const formHeaderSubtitle = errorMessage ? errorMessage : signUp;
+
   return (
     <Box className="container">
       <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
       <FormHeader
-        title="Вход"
-        subtitle={errorMessage ? errorMessage : "Войдите в свой аккаунт"}
-        isError={!!errorMessage}
+        title={formTitle}
+        subtitle={formHeaderSubtitle}
+        isError={Boolean(errorMessage)}
       />
       <LoginForm setErrorMessage={setErrorMessage} />
       <LoginPageLinks />

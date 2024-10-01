@@ -23,13 +23,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
   });
   const navigate = useNavigate();
 
+  const chat = "/chat";
+
   const handleSubmit = async (values: typeof form.values) => {
     try {
       setLoading(true);
       await login(values);
       setLoading(false);
       setErrorMessage(null);
-      navigate("/chat");
+      navigate(chat);
     } catch (error: any) {
       if (error instanceof Error) {
         setLoading(false);

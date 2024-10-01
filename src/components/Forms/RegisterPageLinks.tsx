@@ -12,6 +12,8 @@ export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = ({
 }) => {
   const navigate = useNavigate();
 
+  const login = "/login";
+
   return (
     <Text className="text-info" mt="md">
       {loginText && (
@@ -20,7 +22,7 @@ export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = ({
           <Text
             component="span"
             className="text-link"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate(login)}
           >
             Войти
           </Text>
@@ -32,7 +34,7 @@ export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = ({
           <Text
             component="span"
             className="text-link"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate(login)}
           >
             Вернуться на страницу входа
           </Text>

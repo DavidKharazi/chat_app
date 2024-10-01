@@ -9,21 +9,24 @@ export function RegisterPage() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const formHeaderTitle = isRegistered
+    ? "Заявка отправлена на модерацию. Ожидайте ответа на ваш e-mail!"
+    : "Создать аккаунт";
+
+  const formHeaderSubtitle =
+    !isRegistered && !errorMessage
+      ? "Введите данные для регистрации"
+      : errorMessage;
+
+  const linkText = "Уже есть учетная запись?";
+
   return (
     <Box className="container">
       <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
       <FormHeader
-        title={
-          isRegistered
-            ? "Заявка отправлена на модерацию. Ожидайте ответа на ваш e-mail!"
-            : "Создать аккаунт"
-        }
-        subtitle={
-          !isRegistered && !errorMessage
-            ? "Введите данные для регистрации"
-            : errorMessage
-        }
-        isError={!!errorMessage}
+        title={formHeaderTitle}
+        subtitle={formHeaderSubtitle}
+        isError={Boolean(errorMessage)}
       />
 
       {isRegistered ? null : (
@@ -32,7 +35,7 @@ export function RegisterPage() {
           setErrorMessage={setErrorMessage}
         />
       )}
-      <RegisterPageLinks loginText="Уже есть учетная запись?" />
+      <RegisterPageLinks loginText={linkText} />
     </Box>
   );
 }
