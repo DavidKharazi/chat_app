@@ -1,3 +1,5 @@
+@import "./styles/authForms.scss";
+
 :root {
   line-height: 1.5;
   font-weight: 400;
@@ -20,6 +22,15 @@
   --navLink-hover-color: rgb(222, 222, 222);
 }
 
+a {
+  font-weight: 500;
+  color: black;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #100c49;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -35,6 +46,25 @@ h1 {
   line-height: 1.1;
 }
 
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  // background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #234058;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -44,4 +74,15 @@ h1 {
   button {
     background-color: #f9f9f9;
   }
+}
+
+@font-face {
+  font-family: "GeistSans";
+  src: url("/path/to/geistsans.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+input {
+  height: 54px;
 }
