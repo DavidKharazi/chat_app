@@ -1,4 +1,5 @@
 import { Text } from "@mantine/core";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface RegisterPageLinksProps {
@@ -6,40 +7,43 @@ interface RegisterPageLinksProps {
   resetText?: string | null;
 }
 
-export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = ({
-  loginText,
-  resetText,
-}) => {
-  const navigate = useNavigate();
+export const RegisterPageLinks: React.FC<RegisterPageLinksProps> = React.memo(
+  ({ loginText, resetText }) => {
+    const navigate = useNavigate();
 
-  const login = "/login";
+    const loginPath = "/login";
 
-  return (
-    <Text className="text-info" mt="md">
-      {loginText && (
-        <>
-          {loginText}{" "}
-          <Text
-            component="span"
-            className="text-link"
-            onClick={() => navigate(login)}
-          >
-            Войти
-          </Text>
-        </>
-      )}
-      {resetText && (
-        <>
-          {resetText}{" "}
-          <Text
-            component="span"
-            className="text-link"
-            onClick={() => navigate(login)}
-          >
-            Вернуться на страницу входа
-          </Text>
-        </>
-      )}
-    </Text>
-  );
-};
+    const handleNavigateToLogin = useCallback(() => {
+      navigate(loginPath);
+    }, [navigate]);
+
+    return (
+      <Text className="text-info" mt="md">
+        {loginText && (
+          <>
+            {loginText}{" "}
+            <Text
+              component="span"
+              className="text-link"
+              onClick={handleNavigateToLogin}
+            >
+              Войти
+            </Text>
+          </>
+        )}
+        {resetText && (
+          <>
+            {resetText}{" "}
+            <Text
+              component="span"
+              className="text-link"
+              onClick={handleNavigateToLogin}
+            >
+              Вернуться на страницу входа
+            </Text>
+          </>
+        )}
+      </Text>
+    );
+  }
+);

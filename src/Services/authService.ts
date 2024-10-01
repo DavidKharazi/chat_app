@@ -14,7 +14,7 @@ enum AuthMessages {
   UnknownError = "Произошла неизвестная ошибка",
 }
 
-const BASE_URL = "https://chata100.up.railway.app"; //https://chatnsv.up.railway.app
+export const BASE_URL = "https://chata100.up.railway.app"; //https://chatnsv.up.railway.app
 const LOGIN_URL = `${BASE_URL}/login`;
 const REGISTER_URL = `${BASE_URL}/register`; ///register/
 

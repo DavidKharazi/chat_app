@@ -1,12 +1,22 @@
 import { Text } from "@mantine/core";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const LoginPageLinks = () => {
+const registerPath = "/register";
+const resetPasswordPath = "/reset-password";
+
+export const LoginPageLinks = React.memo(() => {
   const navigate = useNavigate();
 
-  const register = "/register";
+  // Мемоизация функций навигации
+  const handleNavigateToRegister = useCallback(() => {
+    navigate(registerPath);
+  }, [navigate]);
 
-  const resetPassword = "/reset-password";
+  const handleNavigateToResetPassword = useCallback(() => {
+    navigate(resetPasswordPath);
+  }, [navigate]);
+
   return (
     <>
       <Text className="text-info" mt="md">
@@ -14,7 +24,7 @@ export const LoginPageLinks = () => {
         <Text
           component="span"
           className="text-link"
-          onClick={() => navigate(register)}
+          onClick={handleNavigateToRegister}
         >
           Зарегистрируйтесь
         </Text>
@@ -24,11 +34,11 @@ export const LoginPageLinks = () => {
         <Text
           component="span"
           className="text-link"
-          onClick={() => navigate(resetPassword)}
+          onClick={handleNavigateToResetPassword}
         >
           Сбросить пароль
         </Text>
       </Text>
     </>
   );
-};
+});

@@ -1,5 +1,5 @@
 import { Box, Image } from "@mantine/core";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { RegistrationForm } from "../components/Forms/RegistrationForm";
 import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
 import { FormHeader } from "../components/Forms/FormHeader";
@@ -19,7 +19,9 @@ export function RegisterPage() {
       ? FormConstants.REGISTER_SUBTITLE_DEFAULT
       : errorMessage;
 
-  const linkText = "Уже есть учетная запись?";
+  const handleSuccess = useCallback(() => {
+    setIsRegistered(true);
+  }, []);
 
   return (
     <Box className="container">
@@ -32,11 +34,11 @@ export function RegisterPage() {
 
       {isRegistered ? null : (
         <RegistrationForm
-          onSuccess={() => setIsRegistered(true)}
+          onSuccess={handleSuccess}
           setErrorMessage={setErrorMessage}
         />
       )}
-      <RegisterPageLinks loginText={linkText} />
+      <RegisterPageLinks loginText={FormConstants.REGISTER_LINK_TEXT} />
     </Box>
   );
 }
