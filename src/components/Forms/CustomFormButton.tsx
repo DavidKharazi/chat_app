@@ -26,6 +26,7 @@ const CustomFormButton: React.FC<CustomFormButtonProps> = ({
       variant="filled"
       disabled={!isValid}
       mt="md"
+      w={310}
       size="lg"
       color={hovered ? "#869bb1" : "#18181a"}
       ref={ref}

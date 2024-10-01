@@ -8,7 +8,7 @@ type FormErrors<T> = {
 };
 
 interface InputProps<T extends BaseFormValues> {
-  label: string;
+  label?: string;
   placeholder?: string;
   required?: boolean;
   form: UseFormReturnType<T, (values: T) => Partial<T>>;
@@ -35,7 +35,7 @@ export const CustomInput = <T extends BaseFormValues>({
       label={label}
       placeholder={placeholder}
       size="md"
-      w={350}
+      w={310}
       required={required}
       type={type}
       {...inputProps}
@@ -51,11 +51,10 @@ export const CustomInput = <T extends BaseFormValues>({
         clearError();
         inputProps.onChange?.(event);
       }}
+      className="form-input"
       styles={{
         input: {
-          color: errors[field] ? "red" : "black",
           borderColor: errors[field] ? "red" : "black",
-          transition: "border-color 0.2s ease",
         },
       }}
     />

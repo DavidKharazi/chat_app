@@ -9,4 +9,5 @@ export enum FormConstants {
 
   RESET_PASSWORD_TITLE = "Восстановление пароля",
   RESET_PASSWORD_SUBTITLE_DEFAULT = "Укажите email для восстановления пароля",
+  RESET_PASSWORD_SUCCESS_MESSAGE = "Ссылка для сброса пароля отправлена на ваш email. Проверьте так же папку 'Спам'",
 }

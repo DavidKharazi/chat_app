@@ -23,7 +23,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
   });
   const navigate = useNavigate();
 
-  const chat = "/chat";
+  const chatPath = "/chat";
 
   const handleSubmit = async (values: typeof form.values) => {
     try {
@@ -31,7 +31,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
       await login(values);
       setLoading(false);
       setErrorMessage(null);
-      navigate(chat);
+      navigate(chatPath);
     } catch (error: any) {
       if (error instanceof Error) {
         setLoading(false);
@@ -45,8 +45,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
-        label="Email"
-        placeholder="your.email@example.com"
+        placeholder="Email*"
         required
         form={form}
         errors={form.errors}
@@ -56,8 +55,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
       />
 
       <CustomInput
-        label="Пароль"
-        placeholder="Введите пароль"
+        placeholder="Password*"
         required
         form={form}
         errors={form.errors}

@@ -4,6 +4,8 @@ import { CustomInput } from "./CustomInput";
 import { BaseFormValues } from "../../Types/FormTypes";
 import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
+import { validateResetPasswordForm } from "../../utils/formValidations";
+import { FormConstants } from "../../utils/formConstants";
 
 interface ResetPasswordFormProps {
   onSuccess: (message: string) => void;
@@ -20,9 +22,7 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
       email: "",
     },
     validateInputOnChange: true,
-    validate: {
-      email: (value) => (/\S+@\S+/.test(value) ? null : "Некорректный email"),
-    },
+    validate: validateResetPasswordForm,
   });
 
   const handleSubmit = async (values: typeof form.values) => {
@@ -30,9 +30,7 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
       setLoading(true);
       await resetPassword(values.email);
       setLoading(false);
-      onSuccess(
-        "Ссылка для сброса пароля отправлена на ваш email. Проверьте так же папку 'Спам'"
-      );
+      onSuccess(FormConstants.RESET_PASSWORD_SUCCESS_MESSAGE);
       setErrorMessage(null);
     } catch (error: unknown) {
       setLoading(false);

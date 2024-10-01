@@ -6,7 +6,11 @@ import {
   SPECIAL_CHAR_REGEX,
   UPPER_CASE_REGEX,
 } from "./regexPatterns";
-import { LoginFormValues, RegisterFormValues } from "../Types/FormTypes";
+import {
+  BaseFormValues,
+  LoginFormValues,
+  RegisterFormValues,
+} from "../Types/FormTypes";
 import { ErrorMessages } from "./ErrorMessages";
 
 export const validateLoginForm = (values: LoginFormValues) => {
@@ -44,6 +48,16 @@ export const validateRegisterForm = (values: RegisterFormValues) => {
 
   if (values.password !== values.confirmPassword) {
     errors.confirmPassword = ErrorMessages.PASSWORD_MISMATCH;
+  }
+
+  return errors;
+};
+
+export const validateResetPasswordForm = (values: BaseFormValues) => {
+  const errors: Partial<RegisterFormValues> = {};
+
+  if (!emailRegex.test(values.email) || /\s/.test(values.email)) {
+    errors.email = ErrorMessages.INVALID_EMAIL;
   }
 
   return errors;

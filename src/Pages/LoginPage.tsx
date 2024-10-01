@@ -13,7 +13,7 @@ export function LoginPage() {
 
   return (
     <Box className="container">
-      <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
+      <Image className="form-logo" w={88} src={logo_a100} alt="A100 Logo" />
       <FormHeader
         title={FormConstants.LOGIN_TITLE}
         subtitle={formHeaderSubtitle}

@@ -8,7 +8,6 @@ const resetPasswordPath = "/reset-password";
 export const LoginPageLinks = React.memo(() => {
   const navigate = useNavigate();
 
-  // Мемоизация функций навигации
   const handleNavigateToRegister = useCallback(() => {
     navigate(registerPath);
   }, [navigate]);
