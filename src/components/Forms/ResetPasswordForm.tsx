@@ -1,4 +1,5 @@
 import { useForm } from "@mantine/form";
+import { Text } from "@mantine/core";
 import { resetPassword } from "../../Services/resetPassword";
 import { CustomInput } from "./CustomInput";
 import { BaseFormValues } from "../../Types/FormTypes";
@@ -45,15 +46,17 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
-        label="Email"
+        description="Email*"
         placeholder="your.email@example.com"
         required
         form={form}
-        errors={form.errors}
         field="email"
         type="email"
         clearError={clearError}
       />
+      <Text size="14px" className="subtitle">
+        {FormConstants.RESET_PASSWORD_SUBTITLE_DEFAULT}
+      </Text>
       <CustomFormButton
         type="submit"
         isValid={form.isValid()}

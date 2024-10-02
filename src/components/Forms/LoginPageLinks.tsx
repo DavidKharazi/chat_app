@@ -3,7 +3,6 @@ import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const registerPath = "/register";
-const resetPasswordPath = "/reset-password";
 
 export const LoginPageLinks = React.memo(() => {
   const navigate = useNavigate();
@@ -12,30 +11,16 @@ export const LoginPageLinks = React.memo(() => {
     navigate(registerPath);
   }, [navigate]);
 
-  const handleNavigateToResetPassword = useCallback(() => {
-    navigate(resetPasswordPath);
-  }, [navigate]);
-
   return (
     <>
       <Text className="text-info" mt="md">
-        Нет аккаунта?{" "}
+        У вас нет учетной записи?{" "}
         <Text
-          component="span"
+          component="p"
           className="text-link"
           onClick={handleNavigateToRegister}
         >
-          Зарегистрируйтесь
-        </Text>
-      </Text>
-      <Text className="text-info">
-        Забыли пароль?{" "}
-        <Text
-          component="span"
-          className="text-link"
-          onClick={handleNavigateToResetPassword}
-        >
-          Сбросить пароль
+          Зарегистрироваться
         </Text>
       </Text>
     </>

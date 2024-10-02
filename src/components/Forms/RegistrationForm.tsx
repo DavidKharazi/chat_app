@@ -5,6 +5,7 @@ import { RegisterFormValues } from "../../Types/FormTypes";
 import { validateRegisterForm } from "../../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
+import { CustomPasswordInput } from "./CustomPasswordInput";
 
 interface RegistrationFormProps {
   onSuccess: () => void;
@@ -54,12 +55,11 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         placeholder="your.email@example.com"
         required
         form={form}
-        errors={form.errors}
         field="email"
         type="email"
         clearError={clearError}
       />
-      <CustomInput
+      <CustomPasswordInput
         label="Пароль"
         placeholder="Введите пароль"
         required
@@ -69,7 +69,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         type="password"
         clearError={clearError}
       />
-      <CustomInput
+      <CustomPasswordInput
         label="Подтверждение пароля"
         placeholder="Повторите пароль"
         required

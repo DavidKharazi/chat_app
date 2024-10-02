@@ -7,5 +7,5 @@ interface ErrorMessageProps {
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
   // if (!error) return null;
 
-  return <span className="input-password">{error || ""}</span>;
+  return <span className="form-error">{error || ""}</span>;
 };

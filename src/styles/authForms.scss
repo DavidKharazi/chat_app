@@ -6,11 +6,21 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
 }
 
 .subcontainer {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  margin-bottom: 45px;
 }
 
 .wrapper {
@@ -20,33 +30,38 @@
 }
 
 .form-title {
-  font-family: "GeistSans", "GeistSans Fallback";
-  font-size: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
   font-weight: 600;
   margin: 0px;
   max-width: 380px;
   word-wrap: break-word;
-  align-self: flex-start;
+  text-align: center;
 }
 
 .subtitle {
-  font-family: "GeistSans";
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   color: grey;
   margin: 0px;
   align-self: flex-start;
 }
+
 .form-input {
-  border-radius: 5px;
+  border-color: gray;
   transition: border-color 0.2s ease;
   margin: 10px 0;
+
+  &:focus-within {
+    border-color: #10a37f;
+  }
 }
 
 .form-input::placeholder {
   color: gray;
 }
 
-.input-password {
+.form-error {
   max-width: 310px;
   word-wrap: break-word;
   min-height: 20px;
@@ -54,17 +69,17 @@
 
 .text-info {
   text-align: center;
-  font-family: "GeistSans";
-  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
   color: #262627;
   margin: 0px;
 }
 
 .text-link {
   cursor: pointer;
-  font-family: "GeistSans";
-  font-size: 18px;
-  color: #067257;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: #10a37f;
   margin: 0px;
 
   &:hover {
@@ -73,10 +88,11 @@
 }
 
 .error-message {
-  font-family: "GeistSans";
-  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
   color: rgb(247, 44, 44);
   margin: 0px;
+  text-align: center;
 }
 
 .form-button {
@@ -90,4 +106,5 @@
 
 .form-logo {
   align-self: center;
+  margin-bottom: 7px;
 }

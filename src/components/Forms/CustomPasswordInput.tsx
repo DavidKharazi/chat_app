@@ -1,6 +1,11 @@
-import { TextInput } from "@mantine/core";
+import { PasswordInput } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
 import { BaseFormValues } from "../../Types/FormTypes";
+
+type FormErrors<T> = {
+  [K in keyof T]?: string;
+};
 
 interface InputProps<T extends BaseFormValues> {
   label?: string;
@@ -9,29 +14,32 @@ interface InputProps<T extends BaseFormValues> {
   required?: boolean;
   form: UseFormReturnType<T, (values: T) => Partial<T>>;
   field: keyof T;
+  errors?: FormErrors<T>;
   type?: string;
   clearError: () => void;
 }
 
-export const CustomInput = <T extends BaseFormValues>({
+export const CustomPasswordInput = <T extends BaseFormValues>({
   label,
   placeholder,
   description,
   required,
   form,
   field,
-  type = "text",
+  type = "password",
   clearError,
 }: InputProps<T>) => {
   const inputProps = form.getInputProps(field);
 
+  const [visible, { toggle }] = useDisclosure(false);
+
   return (
-    <TextInput
+    <PasswordInput
       label={label}
       placeholder={placeholder}
       description={description}
-      size="md"
       w={310}
+      size="md"
       required={required}
       type={type}
       {...inputProps}
@@ -44,8 +52,10 @@ export const CustomInput = <T extends BaseFormValues>({
         clearError();
         inputProps.onChange?.(event);
       }}
-      className="form-input"
+      visible={visible}
+      onVisibilityChange={toggle}
       radius="7px"
+      className="form-input"
     />
   );
 };

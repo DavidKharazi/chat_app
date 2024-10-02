@@ -1,11 +1,13 @@
 import { useForm } from "@mantine/form";
+import { Text } from "@mantine/core";
 import { login } from "../../Services/authService";
 import { CustomInput } from "./CustomInput";
 import { LoginFormValues } from "../../Types/FormTypes";
 import { validateLoginForm } from "../../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { CustomPasswordInput } from "./CustomPasswordInput";
 
 interface LoginFormProps {
   setErrorMessage: (message: string | null) => void;
@@ -42,19 +44,26 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
   };
   const clearError = () => setErrorMessage(null);
 
+  const resetPasswordPath = "/reset-password";
+
+  const handleNavigateToResetPassword = useCallback(() => {
+    navigate(resetPasswordPath);
+  }, [navigate]);
+
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
+        description="Адрес электронной почты"
         placeholder="Email*"
         required
         form={form}
-        errors={form.errors}
         field="email"
         type="email"
         clearError={clearError}
       />
 
-      <CustomInput
+      <CustomPasswordInput
+        description="Пароль"
         placeholder="Password*"
         required
         form={form}
@@ -63,12 +72,20 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         type="password"
         clearError={clearError}
       />
+      <Text
+        component="span"
+        className="text-link"
+        onClick={handleNavigateToResetPassword}
+      >
+        Забыли пароль?
+      </Text>
+
       <CustomFormButton
         type="submit"
         isValid={form.isValid()}
         loading={loading}
       >
-        Войти
+        Продолжить
       </CustomFormButton>
     </form>
   );

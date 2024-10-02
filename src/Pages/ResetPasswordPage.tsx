@@ -1,10 +1,11 @@
-import { Box, Text, Image } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 import { useState } from "react";
 import { ResetPasswordForm } from "../components/Forms/ResetPasswordForm";
-import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
+
 import { FormHeader } from "../components/Forms/FormHeader";
-import logo_a100 from "../assets/a100_logo.png";
 import { FormConstants } from "../utils/formConstants";
+import { FormLogo } from "../components/Forms/FormLogo";
+import { FormPageLinks } from "../components/Forms/FormPageLinks";
 
 export function ResetPasswordPage() {
   const [confirmationMessage, setConfirmationMessage] = useState<string | null>(
@@ -12,12 +13,11 @@ export function ResetPasswordPage() {
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const formHeaderSubtitle =
-    errorMessage || FormConstants.RESET_PASSWORD_SUBTITLE_DEFAULT;
+  const formHeaderSubtitle = errorMessage || "";
 
   return (
     <Box className="container">
-      <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
+      <FormLogo />
       {confirmationMessage ? (
         <Box className="subcontainer">
           <Text className="title">{confirmationMessage}</Text>
@@ -35,7 +35,7 @@ export function ResetPasswordPage() {
           />
         </>
       )}
-      <RegisterPageLinks resetText=" " />
+      <FormPageLinks resetText=" " />
     </Box>
   );
 }

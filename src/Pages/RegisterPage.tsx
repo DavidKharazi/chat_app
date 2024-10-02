@@ -1,10 +1,10 @@
-import { Box, Image } from "@mantine/core";
+import { Box } from "@mantine/core";
 import { useCallback, useState } from "react";
 import { RegistrationForm } from "../components/Forms/RegistrationForm";
-import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
 import { FormHeader } from "../components/Forms/FormHeader";
-import logo_a100 from "../assets/a100_logo.png";
 import { FormConstants } from "../utils/formConstants";
+import { FormLogo } from "../components/Forms/FormLogo";
+import { FormPageLinks } from "../components/Forms/FormPageLinks";
 
 export function RegisterPage() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -25,7 +25,7 @@ export function RegisterPage() {
 
   return (
     <Box className="container">
-      <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
+      <FormLogo />
       <FormHeader
         title={formHeaderTitle}
         subtitle={formHeaderSubtitle}
@@ -38,7 +38,7 @@ export function RegisterPage() {
           setErrorMessage={setErrorMessage}
         />
       )}
-      <RegisterPageLinks loginText={FormConstants.REGISTER_LINK_TEXT} />
+      <FormPageLinks registerText={FormConstants.REGISTER_TEXT} />
     </Box>
   );
 }
