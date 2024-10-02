@@ -5,6 +5,8 @@ import { FormHeader } from "../components/Forms/FormHeader";
 import { FormConstants } from "../utils/formConstants";
 import { FormLogo } from "../components/Forms/FormLogo";
 import { FormPageLinks } from "../components/Forms/FormPageLinks";
+import { FormFooter } from "../components/Forms/FormFooter";
+import { TermsPrivacyLinks } from "../components/Forms/TermsPrivacyLinks";
 
 export function RegisterPage() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -39,6 +41,10 @@ export function RegisterPage() {
         />
       )}
       <FormPageLinks registerText={FormConstants.REGISTER_TEXT} />
+      <Box className="privacy-links">
+        <TermsPrivacyLinks />
+        <FormFooter />
+      </Box>
     </Box>
   );
 }

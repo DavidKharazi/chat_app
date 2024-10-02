@@ -6,6 +6,8 @@ import { FormHeader } from "../components/Forms/FormHeader";
 import { FormConstants } from "../utils/formConstants";
 import { FormLogo } from "../components/Forms/FormLogo";
 import { FormPageLinks } from "../components/Forms/FormPageLinks";
+import { FormFooter } from "../components/Forms/FormFooter";
+import { TermsPrivacyLinks } from "../components/Forms/TermsPrivacyLinks";
 
 export function ResetPasswordPage() {
   const [confirmationMessage, setConfirmationMessage] = useState<string | null>(
@@ -36,6 +38,10 @@ export function ResetPasswordPage() {
         </>
       )}
       <FormPageLinks resetText=" " />
+      <Box className="privacy-links">
+          <TermsPrivacyLinks />
+          <FormFooter />
+        </Box>
     </Box>
   );
 }

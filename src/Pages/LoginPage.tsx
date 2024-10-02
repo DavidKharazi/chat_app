@@ -5,6 +5,8 @@ import { useState } from "react";
 import { FormConstants } from "../utils/formConstants";
 import { FormLogo } from "../components/Forms/FormLogo";
 import { FormPageLinks } from "../components/Forms/FormPageLinks";
+import { TermsPrivacyLinks } from "../components/Forms/TermsPrivacyLinks";
+import { FormFooter } from "../components/Forms/FormFooter";
 
 export function LoginPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -12,15 +14,21 @@ export function LoginPage() {
   const formHeaderSubtitle = errorMessage || FormConstants.LOGIN_SUBTITLE;
 
   return (
-    <Box className="container">
-      <FormLogo />
-      <FormHeader
-        title={FormConstants.LOGIN_TITLE}
-        subtitle={formHeaderSubtitle}
-        isError={Boolean(errorMessage)}
-      />
-      <LoginForm setErrorMessage={setErrorMessage} />
-      <FormPageLinks loginText={FormConstants.LOGIN_TEXT} />
-    </Box>
+    <>
+      <Box className="container">
+        <FormLogo />
+        <FormHeader
+          title={FormConstants.LOGIN_TITLE}
+          subtitle={formHeaderSubtitle}
+          isError={Boolean(errorMessage)}
+        />
+        <LoginForm setErrorMessage={setErrorMessage} />
+        <FormPageLinks loginText={FormConstants.LOGIN_TEXT} />
+        <Box className="privacy-links">
+          <TermsPrivacyLinks />
+          <FormFooter />
+        </Box>
+      </Box>
+    </>
   );
 }

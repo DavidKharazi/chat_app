@@ -2,6 +2,7 @@ import { Text } from "@mantine/core";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormConstants } from "../../utils/formConstants";
+import { routesNames } from "../../utils/routesNames";
 
 interface FormPageLinksProps {
   loginText?: string;
@@ -20,9 +21,6 @@ export const FormPageLinks: React.FC<FormPageLinksProps> = React.memo(
       [navigate]
     );
 
-    const loginPath = "/login";
-    const registerPath = "/register";
-
     return (
       <Text className="text-info" mt="md">
         {registerText && (
@@ -31,7 +29,7 @@ export const FormPageLinks: React.FC<FormPageLinksProps> = React.memo(
             <Text
               component="span"
               className="text-link"
-              onClick={() => handleNavigate(loginPath)}
+              onClick={() => handleNavigate(routesNames.login)}
             >
               Войти
             </Text>
@@ -43,7 +41,7 @@ export const FormPageLinks: React.FC<FormPageLinksProps> = React.memo(
             <Text
               component="span"
               className="text-link"
-              onClick={() => handleNavigate(loginPath)}
+              onClick={() => handleNavigate(routesNames.login)}
             >
               {FormConstants.RESET_PASSWORD_LINK_TEXT}
             </Text>
@@ -55,7 +53,7 @@ export const FormPageLinks: React.FC<FormPageLinksProps> = React.memo(
             <Text
               component="span"
               className="text-link"
-              onClick={() => handleNavigate(registerPath)}
+              onClick={() => handleNavigate(routesNames.register)}
             >
               {FormConstants.LOGIN_LINK_TEXT}
             </Text>
