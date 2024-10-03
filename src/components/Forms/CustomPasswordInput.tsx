@@ -55,7 +55,6 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
       visible={visible}
       onVisibilityChange={toggle}
       radius="7px"
-      className="form-input"
     />
   );
 };

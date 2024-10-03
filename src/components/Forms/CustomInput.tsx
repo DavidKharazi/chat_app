@@ -24,6 +24,7 @@ export const CustomInput = <T extends BaseFormValues>({
   clearError,
 }: InputProps<T>) => {
   const inputProps = form.getInputProps(field);
+  
 
   return (
     <TextInput

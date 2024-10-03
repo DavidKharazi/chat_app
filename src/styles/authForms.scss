@@ -1,13 +1,14 @@
 .container {
   min-width: 310px;
   max-width: 500px;
+  height: 100vh;
   margin: auto;
   border-radius: 7px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -45,20 +46,6 @@
   color: grey;
   margin: 0px;
   align-self: flex-start;
-}
-
-.form-input {
-  border-color: gray;
-  transition: border-color 0.2s ease;
-  margin: 10px 0;
-
-  &:focus-within {
-    border-color: #10a37f;
-  }
-}
-
-.form-input::placeholder {
-  color: gray;
 }
 
 .form-error {
@@ -106,14 +93,14 @@
 
 .form-logo {
   align-self: center;
-  margin-bottom: 7px;
+  margin-top: 100px;
 }
 
 .privacy-links {
-  margin: 20px 0;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
   justify-content: center;
   align-items: center;
 }
@@ -121,4 +108,13 @@
   font-family: Montserrat, sans-serif;
   font-weight: 800;
   font-style: italic;
+}
+.mantine-Input-input {
+  height: 54px;
+  margin: 10px 0;
+  transition: border-color 0.2s ease;
+  &:focus-within {
+    border-color: transparent;
+    outline: 2px solid #10a37f;
+  }
 }
