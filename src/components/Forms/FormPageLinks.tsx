@@ -43,7 +43,7 @@ export const FormPageLinks: React.FC<FormPageLinksProps> = React.memo(
               className="text-link"
               onClick={() => handleNavigate(routesNames.login)}
             >
-              {FormConstants.RESET_PASSWORD_LINK_TEXT}
+              {FormConstants.REGISTER_LINK_TEXT}
             </Text>
           </>
         )}

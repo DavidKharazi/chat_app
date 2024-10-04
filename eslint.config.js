@@ -13,19 +13,7 @@ export default tseslint.config(
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    parser: "@typescript-eslint/parser",
-    parserOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      project: [
-        "./tsconfig.json",
-        "./tsconfig.app.json",
-        "./tsconfig.node.json",
-      ],
-      tsconfigRootDir: __dirname,
-    },
     plugins: {
-      prettier,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },

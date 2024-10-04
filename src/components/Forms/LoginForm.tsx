@@ -34,7 +34,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
       setLoading(false);
       setErrorMessage(null);
       navigate(chatPath);
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         setLoading(false);
         console.error("Ошибка авторизации:", error.message);
