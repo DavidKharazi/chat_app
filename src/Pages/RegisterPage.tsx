@@ -1,69 +1,44 @@
-import { Button, TextInput, Box, Text } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { useNavigate } from "react-router-dom";
+import { Box, Image } from "@mantine/core";
+import { useCallback, useState } from "react";
+import { RegistrationForm } from "../components/Forms/RegistrationForm";
+import { RegisterPageLinks } from "../components/Forms/RegisterPageLinks";
+import { FormHeader } from "../components/Forms/FormHeader";
+import logo_a100 from "../assets/a100_logo.png";
+import { FormConstants } from "../utils/formConstants";
 
 export function RegisterPage() {
-  const navigate = useNavigate();
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const form = useForm({
-    initialValues: {
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    validate: {
-      email: (value) => (/\S+@\S+/.test(value) ? null : "Некорректный email"),
-      password: (value) =>
-        value.length > 5 ? null : "Пароль должен содержать не менее 6 символов",
-      confirmPassword: (value, values) =>
-        value === values.password ? null : "Пароли не совпадают",
-    },
-  });
+  const formHeaderTitle = isRegistered
+    ? FormConstants.REGISTER_TITLE_PENDING
+    : FormConstants.REGISTER_TITLE;
 
-  const handleSubmit = (values: typeof form.values) => {
-    // Заменить на отправку запроса на регистрацию
-    console.log("Регистрация:", values);
-    navigate("/chat");
-  };
+  const formHeaderSubtitle =
+    !isRegistered && !errorMessage
+      ? FormConstants.REGISTER_SUBTITLE_DEFAULT
+      : errorMessage;
+
+  const handleSuccess = useCallback(() => {
+    setIsRegistered(true);
+  }, []);
 
   return (
-    <Box style={{ minWidth: 350, maxWidth: 650, margin: "auto" }}>
-      <h3>Регистрация</h3>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <TextInput
-          label="Email"
-          placeholder="your.email@example.com"
-          required
-          {...form.getInputProps("email")}
+    <Box className="container">
+      <Image className="form-logo" w={108} src={logo_a100} alt="A100 Logo" />
+      <FormHeader
+        title={formHeaderTitle}
+        subtitle={formHeaderSubtitle}
+        isError={Boolean(errorMessage)}
+      />
+
+      {isRegistered ? null : (
+        <RegistrationForm
+          onSuccess={handleSuccess}
+          setErrorMessage={setErrorMessage}
         />
-        <TextInput
-          label="Пароль"
-          placeholder="Введите пароль"
-          required
-          type="password"
-          {...form.getInputProps("password")}
-        />
-        <TextInput
-          label="Подтверждение пароля"
-          placeholder="Повторите пароль"
-          required
-          type="password"
-          {...form.getInputProps("confirmPassword")}
-        />
-        <Button type="submit" fullWidth mt="md">
-          Зарегистрироваться
-        </Button>
-      </form>
-      <Text style={{ textAlign: "center" }} mt="md">
-        Уже зарегистрированы?{" "}
-        <Text
-          component="span"
-          style={{ color: "blue", cursor: "pointer" }}
-          onClick={() => navigate("/login")}
-        >
-          Войти
-        </Text>
-      </Text>
+      )}
+      <RegisterPageLinks loginText={FormConstants.REGISTER_LINK_TEXT} />
     </Box>
   );
 }

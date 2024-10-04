@@ -13,7 +13,7 @@ const ChatHeader = () => {
 
   return (
     <AppShell.Header>
-      <Flex h='100%'>
+      <Flex h="100%">
         <Box
           className={clsx(
             styles.leftButtonsGroup,
@@ -25,7 +25,7 @@ const ChatHeader = () => {
         </Box>
         <Box className={styles.rightButtonsGroup}>
           <ChatModeButton />
-          <Avatar visibleFrom='sm' />
+          <Avatar visibleFrom="sm" />
         </Box>
       </Flex>
       <NavOverlay />
