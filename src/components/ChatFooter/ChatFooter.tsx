@@ -6,18 +6,16 @@ import {
   Text,
   Textarea,
 } from "@mantine/core";
-import { FC } from "react";
 import stapleIcon from "../../assets/staple.svg";
 import filledArrowIcon from "../../assets/buttonFilledArrow.svg";
 import styles from "./ChatFooter.module.scss";
 import { clsx } from "clsx";
 import questionIcon from "../../assets/question.svg";
+import { useAppSelector } from "../../store/hooks";
 
-type ChatFooterProps = {
-  isNavClosed: boolean;
-};
+const ChatFooter = () => {
+  const isNavClosed = useAppSelector((state) => state.navBar.isNavClosed);
 
-const ChatFooter: FC<ChatFooterProps> = ({ isNavClosed }) => {
   return (
     <AppShell.Footer
       className={clsx(styles.footer, isNavClosed && styles.noLeftPadding)}

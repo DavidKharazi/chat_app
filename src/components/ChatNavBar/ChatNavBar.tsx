@@ -8,7 +8,7 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import updatePlanIcon from "../../assets/updatePlan.svg";
 import a100Icon from "../../assets/a100_logo.png";
 import translateIcon from "../../assets/translate.svg";
@@ -17,6 +17,9 @@ import styles from "./ChatNavBar.module.scss";
 import clsx from "clsx";
 import Avatar from "../UI/Avatar";
 import NavMenuButton from "../UI/NavMenuButton";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useMediaQuery } from "@mantine/hooks";
+import { closeNav, openNav } from "../../slices/navBarSlice";
 
 type NavItemProps = {
   iconSrc?: string;
@@ -36,17 +39,24 @@ const NavItem: FC<NavItemProps> = ({ iconSrc, label }) => (
   />
 );
 
-type ChatFooterProps = {
-  isNavClosed: boolean;
-  toggleNav: () => void;
-};
+const ChatNavBar = () => {
+  const matches = useMediaQuery("(min-width: 768px)");
+  const isNavClosed = useAppSelector((state) => state.navBar.isNavClosed);
+  const dispatch = useAppDispatch();
 
-const ChatNavBar: FC<ChatFooterProps> = ({ isNavClosed, toggleNav }) => {
+  useEffect(() => {
+    if (matches) {
+      dispatch(openNav());
+    } else {
+      dispatch(closeNav());
+    }
+  }, [matches, dispatch]);
+
   return (
     <AppShell.Navbar
       className={clsx(styles.navBar, isNavClosed && styles.navBarHidden)}
     >
-      <NavMenuButton onClick={toggleNav} hiddenFrom='sm' />
+      <NavMenuButton hiddenFrom='sm' />
       <Stack gap={20}>
         <Box>
           <NavItem iconSrc={a100Icon} label='CyberMan A100' />
