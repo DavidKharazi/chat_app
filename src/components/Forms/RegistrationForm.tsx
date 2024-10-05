@@ -6,6 +6,7 @@ import { validateRegisterForm } from "../../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
 import { CustomPasswordInput } from "./CustomPasswordInput";
+import { FormConstants } from "../../utils/formConstants";
 
 interface RegistrationFormProps {
   onSuccess: () => void;
@@ -85,7 +86,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         isValid={form.isValid()}
         loading={loading}
       >
-        Продолжить
+        {FormConstants.LOGIN_BUTTON_TEXT}
       </CustomFormButton>
     </form>
   );

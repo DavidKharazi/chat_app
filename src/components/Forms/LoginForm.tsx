@@ -8,6 +8,7 @@ import CustomFormButton from "./CustomFormButton";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { CustomPasswordInput } from "./CustomPasswordInput";
+import { FormConstants } from "../../utils/formConstants";
 
 interface LoginFormProps {
   setErrorMessage: (message: string | null) => void;
@@ -78,7 +79,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         className="text-link"
         onClick={handleNavigateToResetPassword}
       >
-        Забыли пароль?
+        {FormConstants.LOGIN_QUESTION}
       </Text>
 
       <CustomFormButton
@@ -86,7 +87,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         isValid={form.isValid()}
         loading={loading}
       >
-        Продолжить
+        {FormConstants.LOGIN_BUTTON_TEXT}
       </CustomFormButton>
     </form>
   );

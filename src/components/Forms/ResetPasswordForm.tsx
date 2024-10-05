@@ -62,7 +62,7 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
         isValid={form.isValid()}
         loading={loading}
       >
-        Отправить инструкции
+        {FormConstants.RESET_BUTTON_TEXT}
       </CustomFormButton>
     </form>
   );
