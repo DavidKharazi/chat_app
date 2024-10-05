@@ -76,7 +76,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         placeholder="Повторите пароль"
         required
         form={form}
-        errors={!!form.errors["password"]}
+        errors={!!form.errors["confirmPassword"]}
         field="confirmPassword"
         type="password"
         clearError={clearError}
