@@ -70,6 +70,7 @@
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
+  font-weight: 600;
   color: #10a37f;
   margin: 0px;
 
@@ -121,4 +122,29 @@
     border-color: transparent;
     outline: 2px solid #10a37f;
   }
+}
+
+.form-icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+.form-icon {
+  margin-right: 8px;
+  color: gray;
+  margin-bottom: 20px;
+}
+.error-icon-wrapper {
+  display: flex;
+  align-items: center;
+  color: "red";
+}
+.error-icon {
+  margin-right: 5px;
+}
+.tip {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: grey;
+  margin-bottom: 20px;
+  text-align: center;
 }

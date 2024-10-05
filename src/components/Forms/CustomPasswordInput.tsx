@@ -43,8 +43,8 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
       {...inputProps}
       error={
         errors && (
-          <div style={{ display: "flex", alignItems: "center", color: "red" }}>
-            <IconAlertCircle size={20} style={{ marginRight: 5 }} />
+          <div className="error-icon-wrapper">
+            <IconAlertCircle size={20} className="error-icon" />
             {form.errors[field]}
           </div>
         )

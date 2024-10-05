@@ -51,7 +51,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
-        label="Email"
+        description="Email"
         placeholder="your.email@example.com"
         required
         form={form}
@@ -61,7 +61,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         clearError={clearError}
       />
       <CustomPasswordInput
-        label="Пароль"
+        description="Пароль"
         placeholder="Введите пароль"
         required
         form={form}
@@ -71,7 +71,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         clearError={clearError}
       />
       <CustomPasswordInput
-        label="Подтверждение пароля"
+        description="Подтверждение пароля"
         placeholder="Повторите пароль"
         required
         form={form}
@@ -85,7 +85,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         isValid={form.isValid()}
         loading={loading}
       >
-        Зарегистрироваться
+        Продолжить
       </CustomFormButton>
     </form>
   );

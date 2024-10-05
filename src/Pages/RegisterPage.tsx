@@ -16,10 +16,7 @@ export function RegisterPage() {
     ? FormConstants.REGISTER_TITLE_PENDING
     : FormConstants.REGISTER_TITLE;
 
-  const formHeaderSubtitle =
-    !isRegistered && !errorMessage
-      ? FormConstants.REGISTER_SUBTITLE_DEFAULT
-      : errorMessage;
+  const formHeaderSubtitle = !isRegistered && !errorMessage ? "" : errorMessage;
 
   const handleSuccess = useCallback(() => {
     setIsRegistered(true);
