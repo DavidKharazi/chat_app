@@ -2,7 +2,8 @@ import { PasswordInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
 import { BaseFormValues } from "../../Types/FormTypes";
-import { IconAlertCircle, IconEye, IconEyeOff } from "@tabler/icons-react";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import { ErrorMessage } from "./ErrorMessage";
 
 interface InputProps<T extends BaseFormValues> {
   label?: string;
@@ -41,14 +42,7 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
       required={required}
       type={type}
       {...inputProps}
-      error={
-        errors && (
-          <div className="error-icon-wrapper">
-            <IconAlertCircle size={20} className="error-icon" />
-            {form.errors[field]}
-          </div>
-        )
-      }
+      error={errors && <ErrorMessage error={form.errors[field]} />}
       onFocus={(event) => {
         clearError();
         inputProps.onFocus?.(event);

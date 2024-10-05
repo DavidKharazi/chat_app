@@ -2,9 +2,9 @@ import {
   DIGIT_REGEX,
   emailRegex,
   MIN_PASSWORD_LENGTH,
-  passwordRegex,
   SPECIAL_CHAR_REGEX,
   UPPER_CASE_REGEX,
+  VALID_CHARACTERS_REGEX,
 } from "./regexPatterns";
 import {
   BaseFormValues,
@@ -30,8 +30,9 @@ export const validateLoginForm = (values: LoginFormValues) => {
     errors.password = ErrorMessages.PASSWORD_SPECIAL_CHAR;
   } else if (/\s/.test(values.password)) {
     errors.password = ErrorMessages.PASSWORD_SPACES;
+  } else if (!VALID_CHARACTERS_REGEX.test(values.password)) {
+    errors.password = ErrorMessages.PASSWORD_LATIN_CHAR;
   }
-
   return errors;
 };
 
@@ -42,8 +43,18 @@ export const validateRegisterForm = (values: RegisterFormValues) => {
     errors.email = ErrorMessages.INVALID_EMAIL;
   }
 
-  if (!passwordRegex.test(values.password) || /\s/.test(values.password)) {
-    errors.password = ErrorMessages.INVALID_PASSWORD;
+  if (values.password.length < MIN_PASSWORD_LENGTH) {
+    errors.password = ErrorMessages.PASSWORD_LENGHT;
+  } else if (!UPPER_CASE_REGEX.test(values.password)) {
+    errors.password = ErrorMessages.PASSWORD_UPPERCASE;
+  } else if (!DIGIT_REGEX.test(values.password)) {
+    errors.password = ErrorMessages.PASSWORD_NUMBER;
+  } else if (!SPECIAL_CHAR_REGEX.test(values.password)) {
+    errors.password = ErrorMessages.PASSWORD_SPECIAL_CHAR;
+  } else if (/\s/.test(values.password)) {
+    errors.password = ErrorMessages.PASSWORD_SPACES;
+  } else if (!VALID_CHARACTERS_REGEX.test(values.password)) {
+    errors.password = ErrorMessages.PASSWORD_LATIN_CHAR;
   }
 
   if (values.password !== values.confirmPassword) {

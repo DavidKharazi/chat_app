@@ -1,7 +1,7 @@
 import { TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import { BaseFormValues } from "../../Types/FormTypes";
-import { IconAlertCircle } from "@tabler/icons-react";
+import { ErrorMessage } from "./ErrorMessage";
 
 interface InputProps<T extends BaseFormValues> {
   label?: string;
@@ -38,14 +38,7 @@ export const CustomInput = <T extends BaseFormValues>({
       required={required}
       type={type}
       {...inputProps}
-      error={
-        errors && (
-          <div style={{ display: "flex", alignItems: "center", color: "red" }}>
-            <IconAlertCircle size={20} style={{ marginRight: 5 }} />
-            {form.errors[field]}
-          </div>
-        )
-      }
+      error={errors && <ErrorMessage error={form.errors[field]} />}
       onFocus={(event) => {
         clearError();
         inputProps.onFocus?.(event);
