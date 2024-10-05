@@ -46,7 +46,7 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
-        description="Email*"
+        description="Адрес электронной почты"
         placeholder="your.email@example.com"
         required
         form={form}
