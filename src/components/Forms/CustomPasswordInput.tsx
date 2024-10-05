@@ -2,10 +2,7 @@ import { PasswordInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
 import { BaseFormValues } from "../../Types/FormTypes";
-
-type FormErrors<T> = {
-  [K in keyof T]?: string;
-};
+import { IconAlertCircle, IconEye, IconEyeOff } from "@tabler/icons-react";
 
 interface InputProps<T extends BaseFormValues> {
   label?: string;
@@ -14,7 +11,7 @@ interface InputProps<T extends BaseFormValues> {
   required?: boolean;
   form: UseFormReturnType<T, (values: T) => Partial<T>>;
   field: keyof T;
-  errors?: FormErrors<T>;
+  errors: boolean;
   type?: string;
   clearError: () => void;
 }
@@ -26,6 +23,7 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
   required,
   form,
   field,
+  errors,
   type = "password",
   clearError,
 }: InputProps<T>) => {
@@ -43,7 +41,14 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
       required={required}
       type={type}
       {...inputProps}
-      error={form.errors[field]}
+      error={
+        errors && (
+          <div style={{ display: "flex", alignItems: "center", color: "red" }}>
+            <IconAlertCircle size={20} style={{ marginRight: 5 }} />
+            {form.errors[field]}
+          </div>
+        )
+      }
       onFocus={(event) => {
         clearError();
         inputProps.onFocus?.(event);
@@ -55,6 +60,9 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
       visible={visible}
       onVisibilityChange={toggle}
       radius="7px"
+      visibilityToggleIcon={({ reveal }) =>
+        reveal ? <IconEyeOff size={30} /> : <IconEye size={30} />
+      }
     />
   );
 };

@@ -55,6 +55,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         placeholder="your.email@example.com"
         required
         form={form}
+        errors={!!form.errors["email"]}
         field="email"
         type="email"
         clearError={clearError}
@@ -64,7 +65,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         placeholder="Введите пароль"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["password"]}
         field="password"
         type="password"
         clearError={clearError}
@@ -74,7 +75,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         placeholder="Повторите пароль"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["password"]}
         field="confirmPassword"
         type="password"
         clearError={clearError}

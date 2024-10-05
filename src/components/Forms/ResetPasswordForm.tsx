@@ -7,6 +7,7 @@ import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
 import { validateResetPasswordForm } from "../../utils/formValidations";
 import { FormConstants } from "../../utils/formConstants";
+import { IconAlertCircle } from "@tabler/icons-react";
 
 interface ResetPasswordFormProps {
   onSuccess: (message: string) => void;
@@ -50,13 +51,17 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
         placeholder="your.email@example.com"
         required
         form={form}
+        errors={!!form.errors["email"]}
         field="email"
         type="email"
         clearError={clearError}
       />
-      <Text size="14px" className="subtitle">
-        {FormConstants.RESET_PASSWORD_SUBTITLE_DEFAULT}
-      </Text>
+      <div style={{ display: "flex", alignItems: "center", marginTop: "10px" }}>
+        <IconAlertCircle size={18} style={{ marginRight: 8, color: "gray" }} />
+        <Text size="12px" className="subtitle">
+          {FormConstants.RESET_PASSWORD_SUBTITLE_DEFAULT}
+        </Text>
+      </div>
       <CustomFormButton
         type="submit"
         isValid={form.isValid()}

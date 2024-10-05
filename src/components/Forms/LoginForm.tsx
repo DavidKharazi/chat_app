@@ -57,6 +57,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         placeholder="Email*"
         required
         form={form}
+        errors={!!form.errors["email"]}
         field="email"
         type="email"
         clearError={clearError}
@@ -67,7 +68,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
         placeholder="Password*"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["password"]}
         field="password"
         type="password"
         clearError={clearError}

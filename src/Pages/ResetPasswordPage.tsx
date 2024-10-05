@@ -30,6 +30,7 @@ export function ResetPasswordPage() {
             title={FormConstants.RESET_PASSWORD_TITLE}
             subtitle={formHeaderSubtitle}
             isError={Boolean(errorMessage)}
+            isReset={true}
           />
           <ResetPasswordForm
             onSuccess={setConfirmationMessage}
@@ -39,9 +40,9 @@ export function ResetPasswordPage() {
       )}
       <FormPageLinks resetText=" " />
       <Box className="privacy-links">
-          <TermsPrivacyLinks />
-          <FormFooter />
-        </Box>
+        <TermsPrivacyLinks />
+        <FormFooter />
+      </Box>
     </Box>
   );
 }
