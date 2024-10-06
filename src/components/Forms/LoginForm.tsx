@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { CustomPasswordInput } from "./CustomPasswordInput";
 import { FormConstants } from "../../utils/formConstants";
+import { routesNames } from "../../utils/routesNames";
 
 interface LoginFormProps {
   setErrorMessage: (message: string | null) => void;
@@ -26,15 +27,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
   });
   const navigate = useNavigate();
 
-  const chatPath = "/chat";
-
   const handleSubmit = async (values: typeof form.values) => {
     try {
       setLoading(true);
       await login(values);
       setLoading(false);
       setErrorMessage(null);
-      navigate(chatPath);
+      navigate(routesNames.chat);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setLoading(false);
@@ -45,10 +44,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setErrorMessage }) => {
   };
   const clearError = () => setErrorMessage(null);
 
-  const resetPasswordPath = "/reset-password";
-
   const handleNavigateToResetPassword = useCallback(() => {
-    navigate(resetPasswordPath);
+    navigate(routesNames.resetPassword);
   }, [navigate]);
 
   return (
