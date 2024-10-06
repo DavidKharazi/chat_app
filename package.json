@@ -15,7 +15,6 @@
     "@mantine/hooks": "^7.12.2",
     "@reduxjs/toolkit": "^2.2.7",
     "@tabler/icons-react": "^3.19.0",
-    "@reduxjs/toolkit": "^2.2.7",
     "@typescript-eslint/eslint-plugin": "^8.6.0",
     "@typescript-eslint/parser": "^8.6.0",
     "clsx": "^2.1.1",
