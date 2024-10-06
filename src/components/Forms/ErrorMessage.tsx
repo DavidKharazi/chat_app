@@ -1,4 +1,4 @@
-import { IconAlertCircle } from "@tabler/icons-react";
+import IconAlertCircle from "../../assets/IconAlertCircle.svg";
 import { ReactNode } from "react";
 
 interface ErrorMessageProps {
@@ -8,7 +8,7 @@ interface ErrorMessageProps {
 export function ErrorMessage({ error }: ErrorMessageProps) {
   return (
     <div className="error-icon-wrapper">
-      <IconAlertCircle size={20} className="error-icon" />
+      <img src={IconAlertCircle} alt="Alert" className="error-icon" />
       {error}
     </div>
   );

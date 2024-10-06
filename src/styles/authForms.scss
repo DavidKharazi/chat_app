@@ -156,14 +156,19 @@
   color: gray;
   margin-bottom: 20px;
 }
+
 .error-icon-wrapper {
   display: flex;
   align-items: center;
   color: "red";
 }
 .error-icon {
-  margin-right: 5px;
+  margin-right: 8px;
   flex-shrink: 0;
+}
+.password-icon {
+  height: 24px;
+  width: 24px;
 }
 .tip {
   font-family: "Inter", sans-serif;

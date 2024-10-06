@@ -2,7 +2,8 @@ import { PasswordInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
 import { BaseFormValues } from "../../Types/FormTypes";
-import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import IconEye from "../../assets/IconEye.svg";
+import IconEyeOff from "../../assets/IconEyeOff.svg";
 import { ErrorMessage } from "./ErrorMessage";
 
 interface InputProps<T extends BaseFormValues> {
@@ -55,7 +56,11 @@ export const CustomPasswordInput = <T extends BaseFormValues>({
       onVisibilityChange={toggle}
       radius="7px"
       visibilityToggleIcon={({ reveal }) =>
-        reveal ? <IconEyeOff size={30} /> : <IconEye size={30} />
+        reveal ? (
+          <img src={IconEyeOff} alt="Hide password" className="password-icon" />
+        ) : (
+          <img src={IconEye} alt="Show password" className="password-icon" />
+        )
       }
     />
   );
