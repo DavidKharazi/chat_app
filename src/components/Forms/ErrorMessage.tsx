@@ -7,9 +7,9 @@ interface ErrorMessageProps {
 
 export function ErrorMessage({ error }: ErrorMessageProps) {
   return (
-    <div className="error-icon-wrapper">
+    <span className="error-icon-wrapper">
       <img src={IconAlertCircle} alt="Alert" className="error-icon" />
       {error}
-    </div>
+    </span>
   );
 }
