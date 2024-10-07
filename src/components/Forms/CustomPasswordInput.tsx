@@ -1,6 +1,9 @@
-import { TextInput } from "@mantine/core";
+import { PasswordInput } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { UseFormReturnType } from "@mantine/form";
 import { BaseFormValues } from "../../Types/FormTypes";
+import IconEye from "../../assets/IconEye.svg";
+import IconEyeOff from "../../assets/IconEyeOff.svg";
 import { ErrorMessage } from "./ErrorMessage";
 
 interface InputProps<T extends BaseFormValues> {
@@ -9,32 +12,34 @@ interface InputProps<T extends BaseFormValues> {
   description?: string;
   required?: boolean;
   form: UseFormReturnType<T, (values: T) => Partial<T>>;
-  errors: boolean;
   field: keyof T;
+  errors: boolean;
   type?: string;
   clearError: () => void;
 }
 
-export const CustomInput = <T extends BaseFormValues>({
+export const CustomPasswordInput = <T extends BaseFormValues>({
   label,
   placeholder,
   description,
   required,
   form,
-  errors,
   field,
-  type = "text",
+  errors,
+  type = "password",
   clearError,
 }: InputProps<T>) => {
   const inputProps = form.getInputProps(field);
 
+  const [visible, { toggle }] = useDisclosure(false);
+
   return (
-    <TextInput
+    <PasswordInput
       label={label}
       placeholder={placeholder}
       description={description}
-      size="md"
       w={310}
+      size="md"
       required={required}
       type={type}
       {...inputProps}
@@ -47,8 +52,16 @@ export const CustomInput = <T extends BaseFormValues>({
         clearError();
         inputProps.onChange?.(event);
       }}
-      className="form-input"
+      visible={visible}
+      onVisibilityChange={toggle}
       radius="7px"
+      visibilityToggleIcon={({ reveal }) =>
+        reveal ? (
+          <img src={IconEyeOff} alt="Hide password" className="password-icon" />
+        ) : (
+          <img src={IconEye} alt="Show password" className="password-icon" />
+        )
+      }
     />
   );
 };

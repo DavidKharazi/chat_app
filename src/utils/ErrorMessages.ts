@@ -6,5 +6,6 @@ export enum ErrorMessages {
   PASSWORD_NUMBER = "Пароль должен содержать минимум одну цифру",
   PASSWORD_SPECIAL_CHAR = 'Пароль должен содержать минимум один спец. символ: [!@#$%^&*(),.?":{}|<>]',
   PASSWORD_SPACES = "Пробелы в пароле не допускаются",
+  PASSWORD_LATIN_CHAR = "Пароль может содержать только латинские буквы",
   PASSWORD_MISMATCH = "Пароли не совпадают",
 }

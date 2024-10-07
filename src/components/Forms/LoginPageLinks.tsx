@@ -1,41 +1,26 @@
 import { Text } from "@mantine/core";
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-
-const registerPath = "/register";
-const resetPasswordPath = "/reset-password";
+import { FormConstants } from "../../utils/formConstants";
+import { routesNames } from "../../utils/routesNames";
 
 export const LoginPageLinks = React.memo(() => {
   const navigate = useNavigate();
 
   const handleNavigateToRegister = useCallback(() => {
-    navigate(registerPath);
-  }, [navigate]);
-
-  const handleNavigateToResetPassword = useCallback(() => {
-    navigate(resetPasswordPath);
+    navigate(routesNames.register);
   }, [navigate]);
 
   return (
     <>
       <Text className="text-info" mt="md">
-        Нет аккаунта?{" "}
+        {FormConstants.LOGIN_TEXT}{" "}
         <Text
-          component="span"
+          component="p"
           className="text-link"
           onClick={handleNavigateToRegister}
         >
-          Зарегистрируйтесь
-        </Text>
-      </Text>
-      <Text className="text-info">
-        Забыли пароль?{" "}
-        <Text
-          component="span"
-          className="text-link"
-          onClick={handleNavigateToResetPassword}
-        >
-          Сбросить пароль
+          {FormConstants.LOGIN_LINK_TEXT}
         </Text>
       </Text>
     </>

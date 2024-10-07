@@ -1,16 +1,35 @@
 .container {
   min-width: 310px;
   max-width: 500px;
-  margin: auto;
+  height: 100vh;
+  margin: 10px auto;
   border-radius: 7px;
   padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .subcontainer {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
 }
 
 .wrapper {
@@ -20,33 +39,30 @@
 }
 
 .form-title {
-  font-family: "GeistSans", "GeistSans Fallback";
-  font-size: 24px;
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
   font-weight: 600;
   margin: 0px;
   max-width: 380px;
   word-wrap: break-word;
-  align-self: flex-start;
+  text-align: center;
+}
+
+.form-reset-title {
+  padding-top: 20px;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .subtitle {
-  font-family: "GeistSans";
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   color: grey;
   margin: 0px;
   align-self: flex-start;
 }
-.form-input {
-  border-radius: 5px;
-  transition: border-color 0.2s ease;
-  margin: 10px 0;
-}
 
-.form-input::placeholder {
-  color: gray;
-}
-
-.input-password {
+.form-error {
   max-width: 310px;
   word-wrap: break-word;
   min-height: 20px;
@@ -54,17 +70,18 @@
 
 .text-info {
   text-align: center;
-  font-family: "GeistSans";
-  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
   color: #262627;
   margin: 0px;
 }
 
 .text-link {
   cursor: pointer;
-  font-family: "GeistSans";
-  font-size: 18px;
-  color: #067257;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #10a37f;
   margin: 0px;
 
   &:hover {
@@ -73,10 +90,11 @@
 }
 
 .error-message {
-  font-family: "GeistSans";
-  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
   color: rgb(247, 44, 44);
   margin: 0px;
+  text-align: center;
 }
 
 .form-button {
@@ -90,4 +108,72 @@
 
 .form-logo {
   align-self: center;
+  margin-top: 70px;
+}
+
+@media (max-width: 768px) {
+  .form-logo {
+    margin-top: 10px;
+  }
+}
+
+.privacy-links {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .privacy-links {
+    gap: 20px;
+  }
+}
+
+.footer-link {
+  font-family: Montserrat, sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+.mantine-Input-input {
+  height: 54px;
+  margin: 10px 0;
+  transition: border-color 0.2s ease;
+  &:focus-within {
+    border-color: transparent;
+    outline: 2px solid #10a37f;
+  }
+}
+
+.form-icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+.form-icon {
+  margin-right: 8px;
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.error-icon-wrapper {
+  display: flex;
+  align-items: center;
+  color: "red";
+}
+.error-icon {
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.password-icon {
+  height: 24px;
+  width: 24px;
+}
+.tip {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: grey;
+  margin-bottom: 20px;
+  text-align: center;
 }

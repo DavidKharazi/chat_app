@@ -5,6 +5,8 @@ import { RegisterFormValues } from "../../Types/FormTypes";
 import { validateRegisterForm } from "../../utils/formValidations";
 import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
+import { CustomPasswordInput } from "./CustomPasswordInput";
+import { FormConstants } from "../../utils/formConstants";
 
 interface RegistrationFormProps {
   onSuccess: () => void;
@@ -50,31 +52,31 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
-        label="Email"
+        description="Адрес электронной почты"
         placeholder="your.email@example.com"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["email"]}
         field="email"
         type="email"
         clearError={clearError}
       />
-      <CustomInput
-        label="Пароль"
+      <CustomPasswordInput
+        description="Пароль"
         placeholder="Введите пароль"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["password"]}
         field="password"
         type="password"
         clearError={clearError}
       />
-      <CustomInput
-        label="Подтверждение пароля"
+      <CustomPasswordInput
+        description="Подтверждение пароля"
         placeholder="Повторите пароль"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["confirmPassword"]}
         field="confirmPassword"
         type="password"
         clearError={clearError}
@@ -84,7 +86,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
         isValid={form.isValid()}
         loading={loading}
       >
-        Зарегистрироваться
+        {FormConstants.LOGIN_BUTTON_TEXT}
       </CustomFormButton>
     </form>
   );

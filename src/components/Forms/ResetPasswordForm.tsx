@@ -6,6 +6,7 @@ import CustomFormButton from "./CustomFormButton";
 import { useState } from "react";
 import { validateResetPasswordForm } from "../../utils/formValidations";
 import { FormConstants } from "../../utils/formConstants";
+import { FormTip } from "./FormTip";
 
 interface ResetPasswordFormProps {
   onSuccess: (message: string) => void;
@@ -45,21 +46,23 @@ export const ResetPasswordForm: React.FC<ResetPasswordFormProps> = ({
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <CustomInput
-        label="Email"
+        description="Адрес электронной почты"
         placeholder="your.email@example.com"
         required
         form={form}
-        errors={form.errors}
+        errors={!!form.errors["email"]}
         field="email"
         type="email"
         clearError={clearError}
       />
+      <FormTip text={FormConstants.RESET_PASSWORD_SUBTITLE_DEFAULT} />
+
       <CustomFormButton
         type="submit"
         isValid={form.isValid()}
         loading={loading}
       >
-        Отправить инструкции
+        {FormConstants.RESET_BUTTON_TEXT}
       </CustomFormButton>
     </form>
   );

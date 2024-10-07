@@ -28,7 +28,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #100c49;
+  color: #072b22;
 }
 
 body {
@@ -41,7 +41,7 @@ body {
   min-height: 100vh;
 }
 
-h1 {
+/*h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
@@ -49,7 +49,6 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -74,15 +73,11 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+}*/
 
 @font-face {
   font-family: "GeistSans";
   src: url("/path/to/geistsans.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-}
-
-input {
-  height: 54px;
 }
