@@ -14,7 +14,16 @@ enum AuthMessages {
   UnknownError = "Произошла неизвестная ошибка",
 }
 
-export const BASE_URL = "https://chata100.up.railway.app"; //https://chatnsv.up.railway.app
+import { WebSocketService } from './WebSocketService';
+import { getUserChats } from './ChatService';
+import { loadChatTopics } from './ChatTopics';
+import { loadChatMessages } from './loadChatMessages';
+
+const webSocketService = new WebSocketService();
+
+
+// export const BASE_URL = "https://chata100.up.railway.app"; //https://chatnsv.up.railway.app
+export const BASE_URL = "http://localhost:8222";
 const LOGIN_URL = `${BASE_URL}/login`;
 const REGISTER_URL = `${BASE_URL}/register`; ///register/
 
@@ -25,11 +34,15 @@ export const login = async (credentials: LoginCredentials) => {
     //  formData.append("password", credentials.email);
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
+    localStorage.setItem("username", credentials.email);
+
+
 
     const response = await fetch(LOGIN_URL, {
       method: "POST",
       body: formData,
     });
+
 
     if (!response.ok) {
       const errorData = await response.json();
@@ -37,6 +50,18 @@ export const login = async (credentials: LoginCredentials) => {
     }
 
     const data = await response.json();
+
+    webSocketService.connect(credentials.email);
+
+    // Получи чаты пользователя и сохрани currentChatId
+    await getUserChats(credentials.email);
+
+    // После успешного логина получаем темы
+    const chatTopics = await loadChatTopics();
+    console.log("Chat topics loaded:", chatTopics);
+
+    await loadChatMessages();
+
     return data;
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -56,6 +81,7 @@ export const register = async (credentials: RegisterCredentials) => {
     //  formData.append("password", credentials.email);
     formData.append("username", credentials.email);
     formData.append("password", credentials.password);
+    localStorage.setItem("username", credentials.email);
 
     const response = await fetch(REGISTER_URL, {
       method: "POST",
@@ -82,3 +108,8 @@ export const register = async (credentials: RegisterCredentials) => {
     }
   }
 };
+
+
+
+
+

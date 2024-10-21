@@ -32,3 +32,62 @@
     background-color: var(--navLink-hover-color);
   }
 }
+
+
+
+
+.navBarScrollable {
+  max-height: 300px; /* или любая другая высота */
+  overflow-y: auto;
+  padding-right: 8px; /* чтобы содержимое не скрывалось за скроллом */
+}
+
+.navBarScrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.navBarScrollable::-webkit-scrollbar-thumb {
+  background-color: #888; /* цвет полосы прокрутки */
+  border-radius: 3px;
+}
+
+.navBarScrollable::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* цвет полосы прокрутки при наведении */
+}
+
+
+.activeNavLink {
+  background-color: var(--mantine-color-blue-light);
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+.navItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.optionsIcon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.popupMenu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 10;
+  /* Стили для всплывающего меню */
+}
+

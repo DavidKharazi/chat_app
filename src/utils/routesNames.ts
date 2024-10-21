@@ -6,4 +6,5 @@ export const routesNames = {
   resetPassword: "/reset-password",
   privacyPolicy: "/privacy-policy",
   termsOfUse: "/terms-of-use",
+  loadUserChats: "/get_user_chats/${email}",
 };
